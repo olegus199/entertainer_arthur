@@ -1,0 +1,58 @@
+@import "../colors.scss";
+
+.nav_bar {
+  position: fixed;
+  top: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100vw;
+
+  padding: 1.5rem;
+
+  background-color: $main_dark;
+  color: $main_bright;
+
+  z-index: 99;
+}
+
+.logo_container {
+  width: 208px;
+}
+
+.nav_links {
+  display: flex;
+  align-items: center;
+
+  font-family: "Wix Madefor Display", sans-serif;
+  font-size: 0.875rem;
+
+  cursor: pointer;
+
+  & p:not(:last-child) {
+    margin-right: 2em;
+  }
+}
+
+.social_media_container {
+  display: flex;
+  align-items: center;
+
+  & a:not(:last-child) {
+    margin-right: 0.75rem;
+  }
+}
+
+.social_media_unit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+
+  background-color: $main_bright;
+  color: $main_dark;
+  border-radius: 50%;
+}
