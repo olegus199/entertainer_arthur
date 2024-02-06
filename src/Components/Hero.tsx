@@ -12,7 +12,9 @@ const Hero: FC = () => {
           <br /> КРЕМНЁВ
         </h1>
         <div className={styles.contact_me_button}>
-          <p className={styles.contact_me_p}>СВЯЖИТЕСЬ СО МНОЙ</p>
+          <p className={styles.contact_me_p}>
+            СВЯЖИТЕСЬ СО <span>МНОЙ</span>
+          </p>
           <HiMiniChevronRight className={styles.chevron} />
         </div>
       </div>

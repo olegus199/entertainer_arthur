@@ -9,7 +9,8 @@
 
   font-size: 11.25rem;
 
-  background-image: url("../assets/header_main_big.png");
+  // background-image: url("../assets/header_main_big.png");
+  background-image: url("../assets/header_main_big_blue.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -68,11 +69,30 @@
   color: $main_bright;
 
   cursor: pointer;
+
+  span {
+    transition: 0.2s ease-out;
+  }
+
+  transition: scale 0.2s ease-out;
+
+  &:hover {
+    scale: 1.05;
+    span {
+      color: $accent_blue;
+    }
+
+    .chevron {
+      transform: translateX(0rem) rotate(0deg);
+    }
+  }
 }
 
 .chevron {
   width: 2rem;
   height: 2rem;
+  transform: translateX(0) rotate(-180deg);
+  transition: 0.2s ease-out;
 }
 
 @media (max-height: 1150px) and (min-width: 768px) {
