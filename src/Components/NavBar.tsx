@@ -1,6 +1,8 @@
 import styles from "./NavBar.module.scss";
-import { FC } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import logo from "../assets/logo.svg";
+import { IoMenu } from "react-icons/io5";
+import { HiMiniXMark } from "react-icons/hi2";
 import {
   FaYoutube,
   FaVk,
@@ -9,58 +11,130 @@ import {
   FaInstagram,
 } from "react-icons/fa6";
 
+type Visibility = "hidden" | "visible";
+
 const NavBar: FC = () => {
+  const [mobile_menu_open, set_mobile_menu_open] = useState(false);
+  const [links_and_media_classes, set_links_and_media_classes] = useState(
+    `${styles.links_and_media}`
+  );
+  const [mobile_menu_visibility, set_mobile_menu_visibility] =
+    useState<Visibility>("visible");
+  const [is_mobile, set_is_mobile] = useState(window.innerWidth <= 1010);
+  const mobile_menu_ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handle_resize = () => {
+      set_is_mobile(window.innerWidth <= 1010);
+    };
+
+    window.addEventListener("resize", handle_resize);
+
+    return () => {
+      window.removeEventListener("resize", handle_resize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handle_click_outside = (e: MouseEvent) => {
+      if (mobile_menu_ref.current && is_mobile) {
+        if (!mobile_menu_ref.current.contains(e.target as Node)) {
+          set_mobile_menu_open(false);
+        }
+      }
+    };
+
+    document.addEventListener("mousedown", handle_click_outside);
+
+    return () => {
+      document.removeEventListener("mousedown", handle_click_outside);
+    };
+  }, [is_mobile]);
+
+  useEffect(() => {
+    if (mobile_menu_open) {
+      set_links_and_media_classes(
+        `${styles.links_and_media} ${styles.menu_open}`
+      );
+      set_mobile_menu_visibility("visible");
+    } else {
+      set_links_and_media_classes(`${styles.links_and_media}`);
+      setTimeout(() => {
+        set_mobile_menu_visibility("hidden");
+      }, 300);
+    }
+  }, [mobile_menu_open]);
+
   return (
     <nav className={styles.nav_bar}>
-      <div className={styles.logo_container}>
-        <img
-          src={logo}
-          alt="logo"
-          className={styles.logo}
-        />
+      <img
+        src={logo}
+        alt="logo"
+        className={styles.logo}
+      />
+      <div
+        className={styles.mobile_menu_icons_container}
+        onClick={() => set_mobile_menu_open(!mobile_menu_open)}
+      >
+        {!mobile_menu_open && (
+          <IoMenu className={`${styles.mobile_menu_icon}`} />
+        )}
+        {mobile_menu_open && (
+          <HiMiniXMark className={`${styles.mobile_menu_icon}`} />
+        )}
       </div>
-      <div className={styles.nav_links}>
-        <p>ГЛАВНАЯ</p>
-        <p>О СЕБЕ</p>
-        <p>ГАЛЕРЕЯ</p>
-        <p>КОНТАКТЫ</p>
-      </div>
-      <div className={styles.social_media_container}>
-        <a
-          href="https://www.youtube.com/@ArturKremnev"
-          target="_blank"
-          className={styles.social_media_unit}
-        >
-          <FaYoutube className={styles.social_media_icon} />
-        </a>
-        <a
-          href="https://vk.com/kremnevartur"
-          target="_blank"
-          className={styles.social_media_unit}
-        >
-          <FaVk className={styles.social_media_icon} />
-        </a>
-        <a
-          href="https://wa.me/79219929153"
-          target="_blank"
-          className={styles.social_media_unit}
-        >
-          <FaWhatsapp className={styles.social_media_icon} />
-        </a>
-        <a
-          href="https://t.me/Artur_Kremnev"
-          target="_blank"
-          className={styles.social_media_unit}
-        >
-          <FaTelegram className={styles.social_media_icon} />
-        </a>
-        <a
-          href="https://www.instagram.com/artkremnev"
-          target="_blank"
-          className={styles.social_media_unit}
-        >
-          <FaInstagram className={styles.social_media_icon} />
-        </a>
+      <div
+        ref={mobile_menu_ref}
+        className={links_and_media_classes}
+        style={
+          is_mobile
+            ? { visibility: `${mobile_menu_visibility}` }
+            : { visibility: "visible" }
+        }
+      >
+        <div className={styles.nav_links}>
+          <p>ГЛАВНАЯ</p>
+          <p>О СЕБЕ</p>
+          <p>ГАЛЕРЕЯ</p>
+          <p>КОНТАКТЫ</p>
+        </div>
+        <div className={styles.social_media_container}>
+          <a
+            href="https://www.youtube.com/@ArturKremnev"
+            target="_blank"
+            className={styles.social_media_unit}
+          >
+            <FaYoutube className={styles.social_media_icon} />
+          </a>
+          <a
+            href="https://vk.com/kremnevartur"
+            target="_blank"
+            className={styles.social_media_unit}
+          >
+            <FaVk className={styles.social_media_icon} />
+          </a>
+          <a
+            href="https://wa.me/79219929153"
+            target="_blank"
+            className={styles.social_media_unit}
+          >
+            <FaWhatsapp className={styles.social_media_icon} />
+          </a>
+          <a
+            href="https://t.me/Artur_Kremnev"
+            target="_blank"
+            className={styles.social_media_unit}
+          >
+            <FaTelegram className={styles.social_media_icon} />
+          </a>
+          <a
+            href="https://www.instagram.com/artkremnev"
+            target="_blank"
+            className={styles.social_media_unit}
+          >
+            <FaInstagram className={styles.social_media_icon} />
+          </a>
+        </div>
       </div>
     </nav>
   );
