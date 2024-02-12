@@ -7,7 +7,9 @@ function App() {
     <>
       <NavBar />
       <Hero />
-      <div style={{ height: "100vh", width: "100vw" }}>some section</div>
+      <div style={{ height: "100vh", width: "100vw", overflow: "hidden" }}>
+        some section
+      </div>
     </>
   );
 }
