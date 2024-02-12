@@ -99,34 +99,43 @@ const ContactMeWindow: FC<ContactMeWindowProps> = ({ set_window_visible }) => {
             className={styles.input_form}
             onSubmit={handle_submit}
           >
-            <input
-              type="text"
-              name="name"
-              placeholder="Ваше имя"
-              className={styles.input}
-              onChange={handle_input_change}
-            />
-            <input
-              type="text"
-              name="email"
-              placeholder="E-mail"
-              className={styles.input}
-              onChange={handle_input_change}
-            />
-            <input
-              type="text"
-              name="phone"
-              placeholder="+7 (999) 999 - 99 -99"
-              className={styles.input}
-              onChange={handle_input_change}
-            />
-            <input
-              type="text"
-              name="message"
-              placeholder="Ваше сообщение"
-              className={styles.input}
-              onChange={handle_input_change}
-            />
+            <div className={styles.input_container}>
+              <input
+                type="text"
+                name="name"
+                placeholder="Ваше имя"
+                className={styles.input}
+                onChange={handle_input_change}
+              />
+              <div className={styles.max_size_counter}>0/45</div>
+            </div>
+            <div className={styles.input_container}>
+              <input
+                type="text"
+                name="email"
+                placeholder="E-mail"
+                className={styles.input}
+                onChange={handle_input_change}
+              />
+            </div>
+            <div className={styles.input_container}>
+              <input
+                type="number"
+                name="phone"
+                placeholder="+7 (999) 999 - 99 -99"
+                className={styles.input}
+                onChange={handle_input_change}
+              />
+            </div>
+            <div className={styles.input_container}>
+              <input
+                type="text"
+                name="message"
+                placeholder="Ваше сообщение"
+                className={styles.input}
+                onChange={handle_input_change}
+              />
+            </div>
             <button type="submit">Отправить</button>
           </form>
         </div>

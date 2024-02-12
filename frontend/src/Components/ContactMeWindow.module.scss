@@ -93,8 +93,14 @@
   width: 21.25rem;
 }
 
-.input {
+.input_container {
+  position: relative;
   margin-bottom: 3em;
+}
+
+.input {
+  width: 100%;
+
   padding: 0.5em 0;
 
   font-size: 1rem;
@@ -110,6 +116,12 @@
   &::placeholder {
     color: rgba($color: $main_dark, $alpha: 0.3);
   }
+}
+
+.max_size_counter {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 button {
@@ -175,6 +187,7 @@ button {
   display: none;
 }
 
+// Width queries
 @media (max-width: 1118px) {
   .image_wrapper {
     top: auto;
@@ -334,7 +347,7 @@ button {
     font-size: 1.5rem;
   }
 
-  .input {
+  .input_container {
     font-size: 0.875rem;
   }
 
@@ -359,7 +372,7 @@ button {
     margin-bottom: 1em;
   }
 
-  .input {
+  .input_container {
     margin-bottom: 2em;
   }
 
@@ -375,7 +388,7 @@ button {
   }
 }
 
-@media (max-height: 520px) {
+@media (max-height: 530px) {
   .content_container {
     display: flex;
     justify-content: space-between;
@@ -457,8 +470,11 @@ button {
     font-size: 1.25rem;
   }
 
-  .input {
+  .input_container {
     margin-bottom: 1em;
+  }
+
+  .input {
     font-size: 0.75rem;
   }
 
@@ -481,7 +497,7 @@ button {
   }
 }
 
-@media (max-width: 420px) and (max-height: 500px) {
+@media (max-width: 480px) and (max-height: 530px) {
   .call_options {
     align-items: flex-end;
     flex-direction: column;
