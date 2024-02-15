@@ -1,0 +1,4 @@
+smtp_addr: mail.artkremnev.ru
+backend_email: guest@mail.artkremnev.ru
+backend_username: guest@mail.artkremnev.ru
+admin_email: arthur@mail.artkremnev.ru

@@ -1,0 +1,36 @@
+services:
+  entertainer_arthur:
+    image: ghashy/entertainer_arthur:0.1
+    ports:
+      - "15100:15100"
+    secrets:
+      - backend-email-password
+      - config
+    environment:
+      BACKEND_EMAIL_PASSWORD_FILE: /run/secrets/backend-email-password
+      APP_CONFIG_FILE: /run/secrets/config
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:15100/api/health"]
+      # The health check will first run interval seconds after the container is 
+      # started, and then again interval seconds after each previous check 
+      # completes.
+      interval: 5s
+      # If a single run of the check takes longer than timeout seconds then the 
+      # check is considered to have failed.
+      timeout: 5s
+      # It takes retries consecutive failures of the health check for the 
+      # container to be considered unhealthy.
+      retries: 2
+      # Start period provides initialization time for containers that need time 
+      # to bootstrap. Probe failure during that period will not be counted 
+      # towards the maximum number of retries. However, if a health check 
+      # succeeds during the start period, the container is considered started 
+      # and all consecutive failures will be counted towards the maximum number 
+      # of retries.
+      start_period: 3s
+
+secrets:
+  backend-email-password:
+    file: secrets/backend-email-password.txt
+  config:
+    file: secrets/config.yaml
