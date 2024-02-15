@@ -15,6 +15,9 @@ use entertainer_arthur::format_phone_number;
 use entertainer_arthur::smtp_client::send_message;
 use entertainer_arthur::smtp_client::MessageReq;
 use entertainer_arthur::Request;
+use entertainer_arthur::MONTHS;
+use entertainer_arthur::RE;
+use entertainer_arthur::WEEKDAYS;
 use lettre::transport::smtp::authentication::Credentials;
 use secrecy::ExposeSecret;
 use time::OffsetDateTime;
@@ -136,7 +139,7 @@ async fn post_message(
 
             if let Some(datetime) = request.datetime {
                 let date = datetime.to_offset(MOSKOW_TIME_OFFSET.clone());
-                match get_date_string(date) {
+                match translate_rfc2822_timestamp(date) {
                     Ok(s) => {
                         body.push_str("\n\n");
                         body.push_str(&s);
@@ -210,6 +213,28 @@ fn get_date_string(
     date.format(&format)
 }
 
+fn translate_rfc2822_timestamp(
+    timestamp: OffsetDateTime,
+) -> Result<String, time::error::Format> {
+    let formatted = get_date_string(timestamp)?;
+    if let Some(captures) = RE.captures(&formatted) {
+        let weekday = captures.get(1).unwrap().as_str();
+        let day = captures.get(2).unwrap().as_str();
+        let month = captures.get(3).unwrap().as_str();
+        let year = captures.get(4).unwrap().as_str();
+        let time = captures.get(5).unwrap().as_str();
+
+        let translated_weekday = WEEKDAYS.get(&weekday).unwrap();
+        let translated_month = MONTHS.get(&month).unwrap();
+
+        Ok(format!(
+            "{translated_weekday}, {day} {translated_month} {year} {time}"
+        ))
+    } else {
+        Ok(formatted)
+    }
+}
+
 #[cfg(test)]
 mod tests {
 
@@ -221,7 +246,96 @@ mod tests {
     use entertainer_arthur::client::Client;
     use time::OffsetDateTime;
 
-    use crate::Request;
+    use crate::{translate_rfc2822_timestamp, Request};
+
+    #[test]
+    fn test_translation() {
+        let test_cases = vec![
+            (
+                "Thu, 01 Jan 1970 00:00:00 +0000",
+                "Четверг, 01 Января 1970 00:00:00 +0000",
+            ),
+            (
+                "Fri, 16 Feb 2024 13:10:00 +0000",
+                "Пятница, 16 Февраля 2024 13:10:00 +0000",
+            ),
+            (
+                "Sat, 17 Feb 2024 13:10:00 +0000",
+                "Суббота, 17 Февраля 2024 13:10:00 +0000",
+            ),
+            (
+                "Sun, 18 Feb 2024 13:10:00 +0000",
+                "Воскресенье, 18 Февраля 2024 13:10:00 +0000",
+            ),
+            (
+                "Mon, 19 Feb 2024 13:10:00 +0000",
+                "Понедельник, 19 Февраля 2024 13:10:00 +0000",
+            ),
+            (
+                "Tue, 20 Feb 2024 13:10:00 +0000",
+                "Вторник, 20 Февраля 2024 13:10:00 +0000",
+            ),
+            (
+                "Wed, 21 Feb 2024 13:10:00 +0000",
+                "Среда, 21 Февраля 2024 13:10:00 +0000",
+            ),
+            (
+                "Fri, 01 Mar 2024 13:10:00 +0000",
+                "Пятница, 01 Марта 2024 13:10:00 +0000",
+            ),
+            (
+                "Mon, 01 Apr 2024 13:10:00 +0000",
+                "Понедельник, 01 Апреля 2024 13:10:00 +0000",
+            ),
+            (
+                "Wed, 01 May 2024 13:10:00 +0000",
+                "Среда, 01 Мая 2024 13:10:00 +0000",
+            ),
+            (
+                "Sat, 01 Jun 2024 13:10:00 +0000",
+                "Суббота, 01 Июня 2024 13:10:00 +0000",
+            ),
+            (
+                "Mon, 01 Jul 2024 13:10:00 +0000",
+                "Понедельник, 01 Июля 2024 13:10:00 +0000",
+            ),
+            (
+                "Thu, 01 Aug 2024 13:10:00 +0000",
+                "Четверг, 01 Августа 2024 13:10:00 +0000",
+            ),
+            (
+                "Sun, 01 Sep 2024 13:10:00 +0000",
+                "Воскресенье, 01 Сентября 2024 13:10:00 +0000",
+            ),
+            (
+                "Tue, 01 Oct 2024 13:10:00 +0000",
+                "Вторник, 01 Октября 2024 13:10:00 +0000",
+            ),
+            (
+                "Fri, 01 Nov 2024 13:10:00 +0000",
+                "Пятница, 01 Ноября 2024 13:10:00 +0000",
+            ),
+            (
+                "Sun, 01 Dec 2024 13:10:00 +0000",
+                "Воскресенье, 01 Декабря 2024 13:10:00 +0000",
+            ),
+            (
+                "Wed, 01 Jan 2025 13:10:00 +0000",
+                "Среда, 01 Января 2025 13:10:00 +0000",
+            ),
+            // Add more test cases for different dates and times
+        ];
+
+        for (input, expected_output) in test_cases {
+            let input_date = OffsetDateTime::parse(
+                input,
+                &time::format_description::well_known::Rfc2822,
+            )
+            .unwrap();
+            let translated = translate_rfc2822_timestamp(input_date).unwrap();
+            assert_eq!(translated, expected_output);
+        }
+    }
 
     fn make_request() -> Request {
         Request {

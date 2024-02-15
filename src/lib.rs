@@ -1,11 +1,47 @@
+use std::collections::HashMap;
+
 use garde::Validate;
 use phonenumber::PhoneNumber;
+use regex::Regex;
 use serde::{de::Visitor, Deserialize, Deserializer, Serializer};
 use time::OffsetDateTime;
 
 pub mod client;
 pub mod config;
 pub mod smtp_client;
+
+lazy_static::lazy_static! {
+    pub static ref RE: Regex = Regex::new(
+        r"([A-Za-z]+), (\d+) ([A-Za-z]+) (\d{4}) (\d{2}:\d{2}:\d{2} [-+]\d{4})"
+    )
+    .unwrap();
+}
+
+lazy_static::lazy_static! {
+    pub static ref WEEKDAYS: HashMap<&'static str, &'static str> = vec![
+        ("Sun", "Воскресенье"),
+        ("Mon", "Понедельник"),
+        ("Tue", "Вторник"),
+        ("Wed", "Среда"),
+        ("Thu", "Четверг"),
+        ("Fri", "Пятница"),
+        ("Sat", "Суббота"),
+    ].into_iter().collect();
+    pub static ref MONTHS: HashMap<&'static str, &'static str> = vec![
+        ("Jan", "Января"),
+        ("Feb", "Февраля"),
+        ("Mar", "Марта"),
+        ("Apr", "Апреля"),
+        ("May", "Мая"),
+        ("Jun", "Июня"),
+        ("Jul", "Июля"),
+        ("Aug", "Августа"),
+        ("Sep", "Сентября"),
+        ("Oct", "Октября"),
+        ("Nov", "Ноября"),
+        ("Dec", "Декабря"),
+    ].into_iter().collect();
+}
 
 const REQUEST_TIME_INTERVAL_MINUTES_LIMIT: i64 = 5;
 const ALLOWED_REQUESTS_IN_TIME_INTERVAL: usize = 5;

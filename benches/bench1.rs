@@ -13,7 +13,7 @@ fn make_client(request_count: usize) -> Client {
     let request = Request {
         name: "Some name".to_owned(),
         email: "any@gmail.con".to_owned(),
-        number: "+79999999999".to_owned(),
+        number: "+79999999999".parse().unwrap(),
         message: "Hello world".to_owned(),
         datetime: Some(OffsetDateTime::now_utc()),
     };

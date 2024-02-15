@@ -549,6 +549,7 @@ dependencies = [
  "lazy_static",
  "lettre",
  "phonenumber",
+ "regex",
  "secrecy",
  "serde",
  "serde_json",

@@ -31,6 +31,7 @@ garde = { version = "0.18.0", features = ["derive", "email", "phone-number"] }
 time = { version = "0.3.31", features = ["local-offset", "macros", "parsing", "formatting"] }
 lazy_static = "1.4.0"
 phonenumber = "0.3.3"
+regex = "1.10.3"
 
 # Security
 secrecy = { version = "0.8.0", features = ["serde"] }
