@@ -1,9 +1,7 @@
 import styles from "./ContactMeWindow.module.scss";
 import { ChangeEvent, FC, FormEvent, useEffect, useRef, useState } from "react";
 import { FaWhatsapp, FaTelegram, FaPhone } from "react-icons/fa6";
-import logo_bright from "../assets/logo_filled.svg";
-import logo_dark from "../assets/logo_dark.svg";
-import bg_photo from "../assets/contact_me_photo.jpg";
+import { FaXmark } from "react-icons/fa6";
 import { z } from "zod";
 import axios from "axios";
 
@@ -15,12 +13,24 @@ interface FormData {
 }
 
 interface ContactMeWindowProps {
+  logo_bright: string;
+  logo_dark: string;
+  bg_photo: string;
+  bg_texture: string;
+  bg_mask: string;
   set_window_visible: (value: boolean) => void;
 }
 
 const phone_regex = /^\d+$/;
 
-const ContactMeWindow: FC<ContactMeWindowProps> = ({ set_window_visible }) => {
+const ContactMeWindow: FC<ContactMeWindowProps> = ({
+  logo_bright,
+  logo_dark,
+  bg_photo,
+  bg_texture,
+  bg_mask,
+  set_window_visible,
+}) => {
   const [form_data, set_form_data] = useState<FormData>({
     name: "",
     email: "",
@@ -243,12 +253,24 @@ const ContactMeWindow: FC<ContactMeWindowProps> = ({ set_window_visible }) => {
     }));
   }, [form_data.name, form_data.message]);
 
+  // Rendering component
   return (
     <div className={styles.contact_me_window}>
       <div
         ref={contact_me_ref}
         className={styles.content_container}
+        style={{
+          backgroundImage: `linear-gradient(
+              rgba(249, 249, 249, 0.6),
+              rgba(249, 249, 249, 0.6)
+                ),
+              url(${bg_texture})`,
+        }}
       >
+        <FaXmark
+          className={styles.close_icon}
+          onClick={() => set_window_visible(false)}
+        />
         <div className={styles.first_child}>
           <div className={styles.header}>
             <h2 className={styles.h2}>Напишите мне</h2>
@@ -347,7 +369,13 @@ const ContactMeWindow: FC<ContactMeWindowProps> = ({ set_window_visible }) => {
             </a>
             <FaPhone className={`${styles.icon} ${styles.number}`} />
           </div>
-          <div className={styles.image_wrapper}>
+          <div
+            className={styles.image_wrapper}
+            style={{
+              maskImage: `url(${bg_mask})`,
+              backgroundImage: `url(${bg_photo})`,
+            }}
+          >
             <img
               src={bg_photo}
               alt="background photo"
