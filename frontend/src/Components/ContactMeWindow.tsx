@@ -4,6 +4,9 @@ import { FaWhatsapp, FaTelegram, FaPhone } from "react-icons/fa6";
 import { FaXmark } from "react-icons/fa6";
 import { z } from "zod";
 import axios from "axios";
+import logo_bright from "../assets/logo_filled.svg";
+import logo_dark from "../assets/logo_dark.svg";
+import bg_photo from "../assets/contact_me_photo.jpg";
 
 interface FormData {
   name: string;
@@ -13,24 +16,12 @@ interface FormData {
 }
 
 interface ContactMeWindowProps {
-  logo_bright: string;
-  logo_dark: string;
-  bg_photo: string;
-  bg_texture: string;
-  bg_mask: string;
   set_window_visible: (value: boolean) => void;
 }
 
 const phone_regex = /^\d+$/;
 
-const ContactMeWindow: FC<ContactMeWindowProps> = ({
-  logo_bright,
-  logo_dark,
-  bg_photo,
-  bg_texture,
-  bg_mask,
-  set_window_visible,
-}) => {
+const ContactMeWindow: FC<ContactMeWindowProps> = ({ set_window_visible }) => {
   const [form_data, set_form_data] = useState<FormData>({
     name: "",
     email: "",
@@ -259,13 +250,6 @@ const ContactMeWindow: FC<ContactMeWindowProps> = ({
       <div
         ref={contact_me_ref}
         className={styles.content_container}
-        style={{
-          backgroundImage: `linear-gradient(
-              rgba(249, 249, 249, 0.6),
-              rgba(249, 249, 249, 0.6)
-                ),
-              url(${bg_texture})`,
-        }}
       >
         <FaXmark
           className={styles.close_icon}
@@ -369,13 +353,7 @@ const ContactMeWindow: FC<ContactMeWindowProps> = ({
             </a>
             <FaPhone className={`${styles.icon} ${styles.number}`} />
           </div>
-          <div
-            className={styles.image_wrapper}
-            style={{
-              maskImage: `url(${bg_mask})`,
-              backgroundImage: `url(${bg_photo})`,
-            }}
-          >
+          <div className={styles.image_wrapper}>
             <img
               src={bg_photo}
               alt="background photo"
