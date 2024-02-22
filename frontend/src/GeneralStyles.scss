@@ -1,6 +1,8 @@
 @import "./colors.scss";
 
 @mixin custom_header {
+  width: fit-content;
+
   .header_aux {
     display: flex;
     align-items: baseline;
