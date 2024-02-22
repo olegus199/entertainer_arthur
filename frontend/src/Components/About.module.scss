@@ -32,6 +32,13 @@
 }
 
 .about_fact {
+  ::selection {
+    color: $accent_red;
+  }
+  ::-moz-selection {
+    color: $accent_red;
+  }
+
   span {
     color: $accent_red;
   }
@@ -65,4 +72,12 @@
   right: -35%;
   opacity: 0.15;
   transform: rotate(-10deg);
+}
+
+.bottom_decor,
+.bottom_decor_line,
+.decor_ellipse {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

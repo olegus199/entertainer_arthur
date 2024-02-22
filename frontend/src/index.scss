@@ -19,3 +19,12 @@ body {
   color: $main_dark;
   overflow-x: hidden;
 }
+
+::selection {
+  color: $main_bright;
+  background-color: $main_dark;
+}
+::-moz-selection {
+  color: $main_bright;
+  background-color: $main_dark;
+}
