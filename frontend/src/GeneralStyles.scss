@@ -28,3 +28,15 @@
     letter-spacing: 0.07em;
   }
 }
+
+@mixin content {
+  position: relative;
+  margin: 0 clamp(0px, (100vw - 80rem) / 2, 9999px);
+  padding: 5.625rem 2rem 0;
+}
+
+@mixin disable_selection {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
