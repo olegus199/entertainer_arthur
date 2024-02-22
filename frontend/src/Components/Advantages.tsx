@@ -86,6 +86,7 @@ const Advantages: FC = () => {
           src={decor_vinyl}
           alt="decor vinyl"
           className={styles.decor_vinyl}
+          draggable={false}
         />
       </div>
     </section>
