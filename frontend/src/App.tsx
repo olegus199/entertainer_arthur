@@ -1,4 +1,5 @@
 import "./App.scss";
+import About from "./Components/About";
 import Hero from "./Components/Hero";
 import NavBar from "./Components/NavBar";
 
@@ -7,9 +8,7 @@ function App() {
     <>
       <NavBar />
       <Hero />
-      <div style={{ height: "100vh", width: "100vw", overflow: "hidden" }}>
-        some section
-      </div>
+      <About />
     </>
   );
 }
