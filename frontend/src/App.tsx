@@ -1,5 +1,6 @@
 import "./App.scss";
 import About from "./Components/About";
+import Advantages from "./Components/Advantages";
 import Hero from "./Components/Hero";
 import NavBar from "./Components/NavBar";
 
@@ -9,6 +10,7 @@ function App() {
       <NavBar />
       <Hero />
       <About />
+      <Advantages />
     </>
   );
 }
