@@ -10,7 +10,6 @@ import PhotoSection from "./Components/PhotoSection";
 function App() {
   const [loading, set_loading] = useState(true);
   const [loader_visible, set_loader_visible] = useState(true);
-  console.log(loading);
 
   const handle_loading = () => {
     setTimeout(() => {
