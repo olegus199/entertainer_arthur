@@ -4,6 +4,8 @@ import About from "./Components/About";
 import Advantages from "./Components/Advantages";
 import Hero from "./Components/Hero";
 import NavBar from "./Components/NavBar";
+import Video from "./Components/Video";
+import PhotoSection from "./Components/PhotoSection";
 
 function App() {
   const [loading, set_loading] = useState(true);
@@ -23,16 +25,18 @@ function App() {
   }, [loading]);
   return (
     <>
-      {loader_visible && (
+      {/* {loader_visible && (
         <div className={styles.loader_container}>
           <div className={styles.loader}></div>
         </div>
-      )}
+      )} */}
       <div onLoad={handle_loading}>
         <NavBar />
         <Hero />
         <About />
         <Advantages />
+        <Video />
+        <PhotoSection />
       </div>
     </>
   );
