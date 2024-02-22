@@ -29,12 +29,38 @@
     font-size: 3.125rem;
     letter-spacing: 0.07em;
   }
+
+  @media (max-width: 584px) {
+    .h2 {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 440px) {
+    margin: 0 auto;
+
+    .header_aux {
+      font-size: 1rem;
+    }
+
+    .h2 {
+      font-size: 1.625rem;
+    }
+  }
 }
 
 @mixin content {
   position: relative;
   margin: 0 clamp(0px, (100vw - 80rem) / 2, 9999px);
   padding: 5.625rem 2rem 0;
+
+  @media (max-width: 584px) {
+    padding: 4rem 1rem 0;
+  }
+
+  @media (max-width: 440px) {
+    padding-top: 3.375rem;
+  }
 }
 
 @mixin disable_selection {
