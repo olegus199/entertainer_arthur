@@ -40,24 +40,29 @@ const About: FC = () => {
           <img
             src={decor1}
             alt="decor svg"
+            draggable={false}
           />
           <img
             src={decor2}
             alt="decor svg"
+            draggable={false}
           />
           <img
             src={decor3}
             alt="decor svg"
+            draggable={false}
           />
           <img
             src={decor4}
             alt="decor svg"
+            draggable={false}
           />
         </div>
         <img
           src={decor_ellipse}
           alt="decor ellipse"
           className={styles.decor_ellipse}
+          draggable={false}
         />
       </div>
       <hr className={styles.bottom_decor_line} />

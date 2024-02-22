@@ -6,9 +6,8 @@
 }
 
 .content {
-  position: relative;
-  margin: 0 clamp(0px, (100vw - 80rem) / 2, 9999px);
-  padding: 5.625rem 2rem 0;
+  @include content;
+  z-index: 2;
 }
 
 .header {
@@ -16,6 +15,9 @@
 }
 
 .about_facts {
+  display: flex;
+  flex-direction: column;
+
   width: fit-content;
 
   margin: 6rem auto 0;
@@ -54,8 +56,9 @@
   margin: 5.5rem auto 0;
 
   img:nth-child(1),
-  img:nth-child(2) {
-    transform: translateY(1px);
+  img:nth-child(2),
+  img:nth-child(4) {
+    transform: translateY(2px);
   }
 }
 
@@ -72,12 +75,11 @@
   right: -35%;
   opacity: 0.15;
   transform: rotate(-10deg);
+  z-index: -1;
 }
 
 .bottom_decor,
 .bottom_decor_line,
 .decor_ellipse {
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  @include disable_selection;
 }
