@@ -71,6 +71,7 @@ const NavBar: FC = () => {
         src={logo}
         alt="logo"
         className={styles.logo}
+        draggable={false}
       />
       <div
         className={styles.mobile_menu_icons_container}
