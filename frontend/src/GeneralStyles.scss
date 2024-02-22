@@ -1,0 +1,30 @@
+@import "./colors.scss";
+
+@mixin custom_header {
+  .header_aux {
+    display: flex;
+    align-items: baseline;
+
+    margin-left: 0.25rem;
+
+    font-size: 1.125rem;
+    font-weight: 500;
+
+    letter-spacing: 0.07em;
+    color: rgba($color: $main_dark, $alpha: 0.6);
+
+    span {
+      display: block;
+      width: 0.6875rem;
+      height: 0.75rem;
+      margin-right: 0.75rem;
+      background-color: $accent_red;
+    }
+  }
+
+  .h2 {
+    font-family: "Wix Madefor Display", sans-serif;
+    font-size: 3.125rem;
+    letter-spacing: 0.07em;
+  }
+}

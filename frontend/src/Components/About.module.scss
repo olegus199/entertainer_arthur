@@ -1,0 +1,68 @@
+@import "../colors.scss";
+@import "../GeneralStyles.scss";
+
+.about_section {
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  margin: 0 clamp(0px, (100vw - 80rem) / 2, 9999px);
+  padding: 5.625rem 2rem 0;
+}
+
+.header {
+  @include custom_header;
+}
+
+.about_facts {
+  width: fit-content;
+
+  margin: 6rem auto 0;
+
+  font-size: 1.625rem;
+  font-weight: 600;
+
+  text-align: center;
+  letter-spacing: 0.07em;
+
+  & .about_fact:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+}
+
+.about_fact {
+  span {
+    color: $accent_red;
+  }
+}
+
+.bottom_decor {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  width: 80%;
+
+  margin: 5.5rem auto 0;
+
+  img:nth-child(1),
+  img:nth-child(2) {
+    transform: translateY(1px);
+  }
+}
+
+.bottom_decor_line {
+  border: none;
+  width: 100%;
+  height: 2px;
+  background-color: $main_dark;
+}
+
+.decor_ellipse {
+  position: absolute;
+  top: 30%;
+  right: -35%;
+  opacity: 0.15;
+  transform: rotate(-10deg);
+}
