@@ -1,5 +1,19 @@
 @import "./colors.scss";
 
+@mixin content {
+  position: relative;
+  margin: 0 clamp(0px, (100vw - 80rem) / 2, 9999px);
+  padding: 5.625rem 2rem 0;
+
+  @media (max-width: 584px) {
+    padding: 4rem 1rem 0;
+  }
+
+  @media (max-width: 440px) {
+    padding-top: 3.375rem;
+  }
+}
+
 @mixin custom_header {
   width: fit-content;
 
@@ -46,20 +60,6 @@
     .h2 {
       font-size: 1.625rem;
     }
-  }
-}
-
-@mixin content {
-  position: relative;
-  margin: 0 clamp(0px, (100vw - 80rem) / 2, 9999px);
-  padding: 5.625rem 2rem 0;
-
-  @media (max-width: 584px) {
-    padding: 4rem 1rem 0;
-  }
-
-  @media (max-width: 440px) {
-    padding-top: 3.375rem;
   }
 }
 
