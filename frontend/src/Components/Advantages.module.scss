@@ -8,7 +8,7 @@
 
 .content {
   @include content;
-  padding-bottom: 10rem;
+  padding-bottom: 4.25rem;
   z-index: 2;
 }
 
@@ -75,6 +75,10 @@
   z-index: -1;
 }
 
+.video_header {
+  margin-top: 8rem;
+}
+
 @media (max-width: 860px) {
   .decor_vinyl {
     left: -60%;
@@ -89,7 +93,7 @@
 
 @media (max-width: 584px) {
   .content {
-    padding-bottom: 6rem;
+    padding-bottom: 3rem;
   }
 
   .advantages_container {
@@ -113,9 +117,17 @@
     left: -500px;
     width: 60rem;
   }
+
+  .video_header {
+    margin-top: 4rem;
+  }
 }
 
 @media (max-width: 440px) {
+  .advantages_container {
+    margin-top: 3.125em;
+  }
+
   .advantages_widget {
     padding: 1.5em;
     font-size: 0.875rem;
@@ -127,6 +139,10 @@
 
   .decor_vinyl {
     width: 50rem;
+  }
+
+  .video_header {
+    margin-top: 3.375rem;
   }
 }
 
