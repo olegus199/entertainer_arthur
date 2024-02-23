@@ -7,6 +7,7 @@ import axios from "axios";
 import logo_bright from "../assets/logo_filled.svg";
 import logo_dark from "../assets/logo_dark.svg";
 import bg_photo from "../assets/contact_me_photo.jpg";
+import { handle_enter_key_down } from "../helpres";
 
 interface FormData {
   name: string;
@@ -244,9 +245,27 @@ const ContactMeWindow: FC<ContactMeWindowProps> = ({ set_window_visible }) => {
     }));
   }, [form_data.name, form_data.message]);
 
+  // Handling esc key down
+  useEffect(() => {
+    const handle_esc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        set_window_visible(false);
+      }
+    };
+
+    document.addEventListener("keydown", handle_esc);
+
+    return () => {
+      document.removeEventListener("keydown", handle_esc);
+    };
+  }, []);
+
   // Rendering component
   return (
-    <div className={styles.contact_me_window}>
+    <div
+      className={styles.contact_me_window}
+      // onKeyDown={(e) => handle_esc(e)}
+    >
       <div
         ref={contact_me_ref}
         className={styles.content_container}
@@ -276,6 +295,7 @@ const ContactMeWindow: FC<ContactMeWindowProps> = ({ set_window_visible }) => {
                 maxLength={45}
                 className={styles.input}
                 onChange={handle_input_change}
+                onKeyDown={(e) => handle_enter_key_down(e, 0, input_refs)}
               />
               <div className={styles.max_size_counter}>
                 {letter_counter.name}/45
@@ -297,6 +317,7 @@ const ContactMeWindow: FC<ContactMeWindowProps> = ({ set_window_visible }) => {
                   }`,
                 }}
                 onChange={handle_input_change}
+                onKeyDown={(e) => handle_enter_key_down(e, 1, input_refs)}
               />
             </div>
             <div className={styles.input_container}>
@@ -309,6 +330,7 @@ const ContactMeWindow: FC<ContactMeWindowProps> = ({ set_window_visible }) => {
                 maxLength={19}
                 className={`${styles.input} ${styles.phone_input}`}
                 onChange={handle_input_change}
+                onKeyDown={(e) => handle_enter_key_down(e, 2, input_refs)}
                 onInput={handle_phone_input}
               />
             </div>
@@ -321,6 +343,7 @@ const ContactMeWindow: FC<ContactMeWindowProps> = ({ set_window_visible }) => {
                 maxLength={500}
                 className={styles.input}
                 onChange={handle_input_change}
+                onKeyDown={(e) => handle_enter_key_down(e, 3, input_refs)}
               />
               <div className={styles.max_size_counter}>
                 {letter_counter.message}/500
