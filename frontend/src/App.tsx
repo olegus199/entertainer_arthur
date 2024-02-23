@@ -24,11 +24,11 @@ function App() {
   }, [loading]);
   return (
     <>
-      {/* {loader_visible && (
+      {loader_visible && (
         <div className={styles.loader_container}>
           <div className={styles.loader}></div>
         </div>
-      )} */}
+      )}
       <div onLoad={handle_loading}>
         <NavBar />
         <Hero />
