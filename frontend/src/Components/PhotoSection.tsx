@@ -32,6 +32,8 @@ import main_ph13 from "../assets/photo_gallery/ph13.jpg";
 import main_ph14 from "../assets/photo_gallery/ph14.jpg";
 import main_ph15 from "../assets/photo_gallery/ph15.jpg";
 import main_ph16 from "../assets/photo_gallery/ph16.jpg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/opacity.css";
 
 interface Photos {
   main: string;
@@ -115,7 +117,33 @@ const PhotoSection: FC = () => {
           </p>
           <h2 className={styles.h2}>Фотогалерея</h2>
         </div>
-        <div className={styles.photos_container}>photos</div>
+        <div className={styles.photos_container}>
+          {photos.map((photo, idx) => {
+            return (
+              <div
+                className={styles.image_wrapper}
+                key={idx}
+              >
+                {/* <img
+                  src={photo.main}
+                  alt="asd"
+                  className={styles.image}
+                  style={{ width: "100%", height: "100%" }}
+                /> */}
+                <LazyLoadImage
+                  src={photo.main}
+                  alt="photo"
+                  className={styles.image}
+                  width="100%"
+                  height="100%"
+                  effect="opacity"
+                  draggable={false}
+                  // placeholderSrc={photo.placeholder}
+                />
+              </div>
+            );
+          })}
+        </div>
         <hr className={styles.divider} />
       </div>
     </section>

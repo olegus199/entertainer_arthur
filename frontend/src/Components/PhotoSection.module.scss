@@ -10,7 +10,28 @@
 }
 
 .photos_container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
   margin-top: 4.5rem;
+}
+
+.image_wrapper {
+  width: 16.5rem;
+  height: 16.5rem;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.image {
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 0.2s ease-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .divider {
