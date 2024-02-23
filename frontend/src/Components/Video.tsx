@@ -1,8 +1,7 @@
 import ReactPlayer from "react-player";
 import styles from "./Video.module.scss";
 import { FC } from "react";
-
-const video_url = "https://www.youtube.com/watch?v=e1hc3O213zg";
+import video_url from "../assets/promo.mp4";
 
 const Video: FC = () => {
   return (
@@ -15,13 +14,7 @@ const Video: FC = () => {
           height="100%"
           controls
           config={{
-            youtube: {
-              playerVars: {
-                autoplay: 1,
-                mute: 1,
-                loop: 1,
-              },
-            },
+            file: {},
           }}
         />
       </div>
