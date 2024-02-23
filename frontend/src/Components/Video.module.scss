@@ -1,10 +1,17 @@
 @import "../colors.scss";
 
-.video_section {
-  padding: 3rem 0;
+.video_wrapper {
+  width: auto;
+  height: auto;
 }
 
-.video_wrapper {
-  margin: 0 auto;
-  width: fit-content;
+.react_player {
+  position: relative;
+  padding-top: 56.25%;
+
+  & > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
