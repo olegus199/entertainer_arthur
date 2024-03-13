@@ -61,6 +61,14 @@
   a {
     color: $accent_red;
     text-decoration: none;
+
+    &::selection {
+      color: $accent_red;
+    }
+    &::-moz-selection {
+      color: $accent_red;
+    }
+
     &:hover {
       text-decoration: underline;
     }
