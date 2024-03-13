@@ -1,0 +1,10 @@
+@import "../colors.scss";
+@import "../GeneralStyles.scss";
+
+.content {
+  @include content;
+}
+
+.header {
+  @include custom_header;
+}
