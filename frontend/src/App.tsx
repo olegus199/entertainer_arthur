@@ -6,6 +6,7 @@ import Hero from "./Components/Hero";
 import NavBar from "./Components/NavBar";
 // import Video from "./Components/Video";
 import PhotoSection from "./Components/PhotoSection";
+import Contacts from "./Components/Contacts";
 
 function App() {
   const [loading, set_loading] = useState(true);
@@ -36,6 +37,7 @@ function App() {
         <Advantages />
         <PhotoSection />
         {/* <Video /> */}
+        <Contacts />
       </div>
     </>
   );
