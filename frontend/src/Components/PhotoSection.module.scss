@@ -18,12 +18,14 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 1.25rem;
+
   margin-top: 4.5rem;
 }
 
 .image_wrapper {
   width: 16.5rem;
   height: 16.5rem;
+
   overflow: hidden;
   cursor: zoom-in;
 }
@@ -44,4 +46,53 @@
   height: 0.125rem;
   margin: 3.75rem auto;
   background-color: rgba($color: $main_dark, $alpha: 0.1);
+}
+
+@media (max-width: 1180px) {
+  .photos_container {
+    gap: 0.25rem;
+  }
+
+  .image_wrapper {
+    width: clamp(
+      10rem,
+      calc(10rem + (264 - 160) * ((100vw - 718px) / (1180 - 718))),
+      16.5rem
+    );
+    height: clamp(
+      10rem,
+      calc(10rem + (264 - 160) * ((100vw - 718px) / (1180 - 718))),
+      16.5rem
+    );
+  }
+}
+
+@media (max-width: 520px) {
+  .image_wrapper {
+    width: clamp(
+      7.5rem,
+      calc(7.5rem + (160 - 120) * ((100vw - 400px) / (520 - 400))),
+      10rem
+    );
+    height: clamp(
+      7.5rem,
+      calc(7.5rem + (160 - 120) * ((100vw - 400px) / (520 - 400))),
+      10rem
+    );
+  }
+}
+
+@media (max-width: 400px) {
+  .image_wrapper {
+    width: clamp(
+      8.875rem,
+      calc(8.875rem + (182 - 142) * ((100vw - 320px) / (400 - 320))),
+      11.375rem
+    );
+    height: clamp(
+      8.875rem,
+      calc(8.875rem + (182 - 142) * ((100vw - 320px) / (400 - 320))),
+      11.375rem
+    );
+  }
 }
