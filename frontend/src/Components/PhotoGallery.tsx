@@ -38,6 +38,22 @@ const PhotoGallery: FC<PhotoGalleryProps> = ({
       if (e.key === "Escape") {
         handle_photo_click(null);
       }
+
+      if (e.key === "ArrowLeft") {
+        if (active_photo_idx === 0) {
+          set_active_photo_idx(photos.length - 1);
+        } else {
+          set_active_photo_idx(active_photo_idx - 1);
+        }
+      }
+
+      if (e.key === "ArrowRight") {
+        if (active_photo_idx === photos.length - 1) {
+          set_active_photo_idx(0);
+        } else {
+          set_active_photo_idx(active_photo_idx + 1);
+        }
+      }
     };
 
     document.addEventListener("keydown", handle_esc);
@@ -45,7 +61,7 @@ const PhotoGallery: FC<PhotoGalleryProps> = ({
     return () => {
       document.removeEventListener("keydown", handle_esc);
     };
-  }, []);
+  }, [active_photo_idx]);
 
   return (
     <div className={styles.photo_gallery}>
