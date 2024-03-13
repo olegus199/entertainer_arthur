@@ -1,0 +1,135 @@
+@import "../GeneralStyles.scss";
+@import "../colors.scss";
+
+.photo_gallery {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba($color: $main_dark, $alpha: 0.8);
+  backdrop-filter: blur(0.25rem);
+  -webkit-backdrop-filter: blur(0.25rem);
+
+  z-index: 999;
+}
+
+.close_icon {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+
+  width: 2rem;
+  height: 2rem;
+
+  color: $main_bright;
+
+  cursor: pointer;
+
+  transition: transform 0.15s ease-out;
+
+  z-index: 99;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.nav_area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 10%;
+  height: 100vh;
+
+  opacity: 0;
+  user-select: none;
+  cursor: pointer;
+
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  transition: opacity 0.15s ease-out;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.nav_button {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 3rem;
+  height: 3rem;
+
+  border-radius: 50%;
+  background-color: $main_bright;
+}
+
+.image_wrapper {
+  display: flex;
+  justify-content: center;
+
+  width: 80%;
+  height: 95%;
+
+  img {
+    position: relative;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 1010px) {
+  .close_icon {
+    top: 1rem;
+    right: 1.5%;
+  }
+
+  .nav_area {
+    width: 8%;
+  }
+
+  .image_wrapper {
+    width: 84%;
+  }
+
+  .nav_button {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .chevron {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .nav_area {
+    position: absolute;
+    width: 20%;
+  }
+
+  .area_right {
+    right: 0;
+  }
+
+  .nav_button {
+    display: none;
+  }
+
+  .image_wrapper {
+    width: 100%;
+  }
+}

@@ -9,6 +9,11 @@
   @include custom_header;
 }
 
+.photo_section {
+  position: relative;
+  overflow: hidden;
+}
+
 .photos_container {
   display: flex;
   justify-content: center;

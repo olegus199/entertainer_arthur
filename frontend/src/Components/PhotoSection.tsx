@@ -1,5 +1,5 @@
 import styles from "./PhotoSection.module.scss";
-import { FC } from "react";
+import { FC, useState } from "react";
 import main_ph1 from "../assets/photo_gallery/ph1.jpg";
 import main_ph2 from "../assets/photo_gallery/ph2.jpg";
 import main_ph3 from "../assets/photo_gallery/ph3.jpg";
@@ -16,8 +16,17 @@ import main_ph13 from "../assets/photo_gallery/ph13.jpg";
 import main_ph14 from "../assets/photo_gallery/ph14.jpg";
 import main_ph15 from "../assets/photo_gallery/ph15.jpg";
 import main_ph16 from "../assets/photo_gallery/ph16.jpg";
+import main_ph17 from "../assets/photo_gallery/ph17.jpg";
+import main_ph18 from "../assets/photo_gallery/ph18.jpg";
+import main_ph19 from "../assets/photo_gallery/ph19.jpg";
+import main_ph20 from "../assets/photo_gallery/ph20.jpg";
+import main_ph21 from "../assets/photo_gallery/ph21.jpg";
+import main_ph22 from "../assets/photo_gallery/ph22.jpg";
+import main_ph23 from "../assets/photo_gallery/ph23.jpg";
+import main_ph24 from "../assets/photo_gallery/ph24.jpg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/opacity.css";
+import PhotoGallery from "./PhotoGallery";
 
 const photos: string[] = [
   main_ph1,
@@ -36,11 +45,31 @@ const photos: string[] = [
   main_ph14,
   main_ph15,
   main_ph16,
+  main_ph17,
+  main_ph18,
+  main_ph19,
+  main_ph20,
+  main_ph21,
+  main_ph22,
+  main_ph23,
+  main_ph24,
 ];
 
 const PhotoSection: FC = () => {
+  const [photo_idx, set_photo_idx] = useState<number | null>(null);
+
+  const handle_photo_click = (idx: number | null) => {
+    set_photo_idx(idx);
+  };
   return (
     <section className={styles.photo_section}>
+      {photo_idx !== null && (
+        <PhotoGallery
+          init_idx={photo_idx}
+          photos={photos}
+          handle_photo_click={handle_photo_click}
+        />
+      )}
       <div className={styles.content}>
         <div className={styles.header}>
           <p className={styles.header_aux}>
@@ -54,11 +83,12 @@ const PhotoSection: FC = () => {
               <div
                 className={styles.image_wrapper}
                 key={idx}
+                onClick={() => handle_photo_click(idx)}
               >
                 <LazyLoadImage
                   src={photo}
                   alt="photo"
-                  className={styles.image}
+                  className={`${styles.image}`}
                   width="100%"
                   height="100%"
                   effect="opacity"
