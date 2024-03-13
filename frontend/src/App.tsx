@@ -34,8 +34,8 @@ function App() {
         <Hero />
         <About />
         <Advantages />
-        <Video />
         <PhotoSection />
+        {/* <Video /> */}
       </div>
     </>
   );

@@ -29,12 +29,6 @@ const About: FC = () => {
           <p className={styles.about_fact}>
             АРТИСТ ТЕАТРА <span>“</span>БУФФ<span>”</span>
           </p>
-          <p className={styles.about_fact}>
-            РАБОТАЛ В “<span>СМЕШНОМ</span> ТЕАТРИКЕ”
-          </p>
-          <p className={styles.about_fact}>
-            А ТАКЖЕ В ТРУППЕ ЮРИЯ <span>ГАЛЬЦЕВА</span>
-          </p>
         </div>
         <div className={styles.bottom_decor}>
           <img

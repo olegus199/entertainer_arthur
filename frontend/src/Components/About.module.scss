@@ -71,7 +71,7 @@
 
 .decor_ellipse {
   position: absolute;
-  top: 30%;
+  top: 20%;
   right: -35%;
   opacity: 0.15;
   transform: rotate(-10deg);
@@ -115,7 +115,7 @@
   }
 
   .decor_ellipse {
-    top: 22%;
+    top: 18%;
     right: -90%;
   }
 }
@@ -135,21 +135,14 @@
   }
 
   .decor_ellipse {
-    top: 12%;
-    width: 30rem;
-  }
-}
-
-@media (max-width: 440px) {
-  .decor_ellipse {
-    top: 9rem;
+    top: 5rem;
     right: -100%;
+    width: 30rem;
   }
 }
 
 @media (max-width: 361px) {
   .decor_ellipse {
-    top: 12rem;
     right: -110%;
   }
 }

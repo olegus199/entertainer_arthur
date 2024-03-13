@@ -88,12 +88,6 @@ const Advantages: FC = () => {
           className={styles.decor_vinyl}
           draggable={false}
         />
-        <div className={`${styles.header} ${styles.video_header}`}>
-          <p className={styles.header_aux}>
-            <span></span>смотрите сами
-          </p>
-          <h2 className={styles.h2}>Промо видео</h2>
-        </div>
       </div>
     </section>
   );
