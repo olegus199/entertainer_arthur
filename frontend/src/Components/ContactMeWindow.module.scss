@@ -97,103 +97,6 @@
   font-size: 2rem;
 }
 
-.input_form {
-  display: flex;
-  flex-direction: column;
-
-  width: 21.25rem;
-}
-
-.input_container {
-  position: relative;
-  margin-bottom: 3em;
-}
-
-.input {
-  width: 100%;
-
-  padding: 0.5em 0.2em;
-
-  font-size: 1rem;
-
-  border: none;
-  border-bottom: 2px solid $accent_red;
-  background-color: transparent;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:focus + .max_size_counter {
-    opacity: 1;
-  }
-
-  &::placeholder {
-    color: rgba($color: $main_dark, $alpha: 0.3);
-  }
-}
-
-.phone_input {
-  padding-left: 1.375rem;
-}
-
-.max_size_counter {
-  position: absolute;
-  bottom: -1.75em;
-  right: 0;
-
-  font-size: 0.875rem;
-
-  color: rgba($color: $main_dark, $alpha: 0.3);
-
-  opacity: 0;
-}
-
-.email_warning {
-  position: absolute;
-  top: -0.75rem;
-  left: 0;
-
-  font-size: 0.75rem;
-  color: $warning;
-}
-
-.phone_code {
-  position: absolute;
-  top: 6px;
-  left: 0;
-}
-
-button {
-  width: fit-content;
-
-  margin-top: 0.625rem;
-  padding: 0.75rem 2.875rem;
-
-  font-family: "Onest", sans-serif;
-  font-size: 1rem;
-
-  border: none;
-  border-radius: 0.125rem;
-  color: $main_bright;
-  background-color: $accent_red;
-
-  cursor: pointer;
-  transition: filter 0.2s ease-out;
-
-  &:hover {
-    filter: brightness(110%);
-  }
-
-  &:disabled {
-    cursor: default;
-    &:hover {
-      filter: brightness(100%);
-    }
-    opacity: 0.5;
-  }
-}
-
 .link_container {
   margin-right: 2rem;
 }
@@ -278,26 +181,6 @@ button {
     font-size: 1.5rem;
   }
 
-  .input {
-    font-size: 0.875rem;
-  }
-
-  .phone_input {
-    padding-left: 1.25rem;
-  }
-
-  .phone_code {
-    font-size: 0.875rem;
-  }
-
-  .max_size_counter {
-    font-size: 0.75rem;
-  }
-
-  button {
-    font-size: 0.875rem;
-  }
-
   .image_wrapper {
     width: 20rem;
     height: 20rem;
@@ -310,10 +193,6 @@ button {
 }
 
 @media (max-width: 900px) {
-  .input_form {
-    width: 100%;
-  }
-
   .image_wrapper {
     width: 12rem;
     height: 12rem;
@@ -336,10 +215,6 @@ button {
 
   .content_container {
     padding: 2.5em 3.5em;
-  }
-
-  button {
-    margin: 0.625rem auto 0;
   }
 
   .header {
@@ -398,11 +273,6 @@ button {
   .h2 {
     margin: 1.5em auto;
   }
-
-  button {
-    margin: 0 auto;
-    padding: 0.75em 2em;
-  }
 }
 
 // Height queries
@@ -414,14 +284,6 @@ button {
   .h2 {
     margin-top: 2em;
     font-size: 1.5rem;
-  }
-
-  .input_container {
-    font-size: 0.875rem;
-  }
-
-  button {
-    font-size: 0.875rem;
   }
 }
 
@@ -440,31 +302,6 @@ button {
   .h2 {
     margin-top: 1em;
     margin-bottom: 1em;
-  }
-
-  .input_container {
-    margin-bottom: 2em;
-  }
-
-  .input {
-    font-size: 0.875rem;
-  }
-
-  .phone_code {
-    font-size: 0.875rem;
-  }
-
-  .max_size_counter {
-    font-size: 0.75rem;
-  }
-
-  .email_warning {
-    top: -0.5rem;
-    font-size: 0.675rem;
-  }
-
-  button {
-    margin: 0;
   }
 
   .image_wrapper {
@@ -564,37 +401,6 @@ button {
     font-size: 1.25rem;
   }
 
-  .input_container {
-    margin-bottom: 1em;
-  }
-
-  .input {
-    font-size: 0.75rem;
-  }
-
-  .phone_input {
-    padding-left: 1rem;
-  }
-
-  .phone_code {
-    top: 5px;
-    font-size: 0.75rem;
-  }
-
-  .max_size_counter {
-    font-size: 0.5rem;
-  }
-
-  .email_warning {
-    font-size: 0.5rem;
-  }
-
-  button {
-    padding: 0.5em 2em;
-    margin-top: 1em;
-    font-size: 0.75rem;
-  }
-
   .image_wrapper {
     display: none;
   }
@@ -647,15 +453,5 @@ button {
 
   .call_options {
     display: none;
-  }
-
-  button {
-    margin: 0 auto;
-  }
-}
-
-@media (min-width: 1010px) and (min-height: 700px) {
-  .phone_code {
-    font-size: 1rem;
   }
 }
