@@ -77,6 +77,8 @@
   width: 1.5rem;
   height: 1.5rem;
 
+  color: $main_bright;
+
   cursor: pointer;
 }
 
@@ -143,6 +145,10 @@
 
 // Width queries
 @media (max-width: 1118px) {
+  .close_icon {
+    color: $main_dark;
+  }
+
   .image_wrapper {
     top: auto;
     right: 3rem;
@@ -313,6 +319,10 @@
 }
 
 @media (max-height: 530px) {
+  .close_icon {
+    color: $main_dark;
+  }
+
   .content_container {
     display: flex;
     justify-content: space-between;

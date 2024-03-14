@@ -43,7 +43,9 @@
   font-size: 0.875rem;
   letter-spacing: 0.1rem;
 
-  cursor: pointer;
+  p {
+    cursor: pointer;
+  }
 
   & p:not(:last-child) {
     margin-right: 2em;
