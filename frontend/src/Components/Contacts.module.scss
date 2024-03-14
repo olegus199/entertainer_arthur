@@ -8,3 +8,128 @@
 .header {
   @include custom_header;
 }
+
+.email_form {
+  margin: 4.5rem 0 5.625rem 6rem;
+}
+
+.call_options {
+  margin: 4.5rem 0 0 6rem;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.375rem;
+  font-weight: 500;
+
+  &:not(:last-child) {
+    margin-bottom: 3.25rem;
+  }
+}
+
+.option_name {
+  font-size: 1.125rem;
+  color: rgba($color: $main_dark, $alpha: 0.5);
+}
+
+.option_phone,
+.option_whatsapp,
+.option_telegram {
+  letter-spacing: 0.1em;
+}
+
+.option_whatsapp {
+  color: $whatsapp_green;
+  text-decoration: none;
+}
+
+.option_telegram {
+  color: $telegram_blue;
+  text-decoration: none;
+}
+
+.recommendation_container {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 55.125rem;
+
+  margin: 8.75rem auto 0;
+  padding: 1rem 2rem;
+
+  border-radius: 1.5rem;
+  background-color: white;
+  box-shadow: 0 0 1.125rem rgba($color: #000000, $alpha: 0.04);
+}
+
+.recommendation_text {
+  max-width: 50.875rem;
+
+  margin: 2.75rem 0;
+
+  font-family: "Geologica", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 200;
+  text-align: center;
+}
+
+.text_red {
+  color: $accent_red;
+
+  &::selection {
+    color: $accent_red;
+  }
+  &::-moz-selection {
+    color: $accent_red;
+  }
+}
+
+.text_bold {
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .email_form {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .call_options {
+    margin-left: 0;
+  }
+
+  .recommendation_text {
+    margin: 1.5rem 0;
+  }
+}
+
+@media (max-width: 440px) {
+  .email_form {
+    margin: 3.5rem 0;
+  }
+
+  .call_options {
+    margin-top: 3.5rem;
+  }
+
+  .option {
+    font-size: 1.125rem;
+  }
+
+  .option_name {
+    font-size: 0.875rem;
+  }
+
+  .recommendation_container {
+    margin-top: 4rem;
+    padding: 2rem;
+  }
+
+  .recommendation_text {
+    margin: 0;
+    font-size: 1.125rem;
+  }
+}
