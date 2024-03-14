@@ -7,9 +7,9 @@ const Meeting: FC = () => {
       <div className={styles.content}>
         <div className={styles.header}>
           <p className={styles.header_aux}>
-            <span></span>есть вопросы?
+            <span></span>как мы общаемся
           </p>
-          <h2 className={styles.h2}>Напишите мне!</h2>
+          <h2 className={styles.h2}>На встрече:</h2>
         </div>
         <div className={styles.meeting_progress}>
           <div className={styles.row}>
