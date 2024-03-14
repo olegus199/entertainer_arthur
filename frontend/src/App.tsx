@@ -8,6 +8,7 @@ import NavBar from "./Components/NavBar";
 import PhotoSection from "./Components/PhotoSection";
 import Contacts from "./Components/Contacts";
 import Meeting from "./Components/Meeting";
+import Footer from "./Components/Footer";
 
 function App() {
   const [loading, set_loading] = useState(true);
@@ -40,6 +41,7 @@ function App() {
         {/* <Video /> */}
         <Contacts />
         <Meeting />
+        <Footer />
       </div>
     </>
   );
