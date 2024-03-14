@@ -83,3 +83,44 @@
 
   background-color: $accent_red;
 }
+
+@media (max-width: 690px) {
+  .row {
+    grid-template-columns: 2.125rem 1fr;
+  }
+
+  .column_circle {
+    grid-area: 1 / 1 / 1 / 1;
+  }
+
+  .column_step,
+  .column_step_1,
+  .column_step_3,
+  .column_step_5 {
+    grid-area: 1 / 2 / 1 / 2;
+    justify-content: flex-start;
+    text-align: start;
+  }
+
+  .meeting_step {
+    margin-left: 1.375rem;
+    font-size: 1.125rem;
+  }
+
+  .progress_line {
+    left: 0.9375rem;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 584px) {
+  .meeting_progress {
+    margin: 4rem 0;
+  }
+}
+
+@media (max-width: 584px) {
+  .meeting_step {
+    font-size: 1rem;
+  }
+}
