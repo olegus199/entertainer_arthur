@@ -7,6 +7,7 @@ import NavBar from "./Components/NavBar";
 // import Video from "./Components/Video";
 import PhotoSection from "./Components/PhotoSection";
 import Contacts from "./Components/Contacts";
+import Meeting from "./Components/Meeting";
 
 function App() {
   const [loading, set_loading] = useState(true);
@@ -38,6 +39,7 @@ function App() {
         <PhotoSection />
         {/* <Video /> */}
         <Contacts />
+        <Meeting />
       </div>
     </>
   );
