@@ -10,10 +10,15 @@ import {
   FaTelegram,
   FaInstagram,
 } from "react-icons/fa6";
+import { SectionNames } from "../types";
 
 type Visibility = "hidden" | "visible";
 
-const NavBar: FC = () => {
+interface NavBarProps {
+  handle_scroll_to_section: (section_name: SectionNames) => void;
+}
+
+const NavBar: FC<NavBarProps> = ({ handle_scroll_to_section }) => {
   const [mobile_menu_open, set_mobile_menu_open] = useState(false);
   const [links_and_media_classes, set_links_and_media_classes] = useState(
     `${styles.links_and_media}`
@@ -94,10 +99,10 @@ const NavBar: FC = () => {
         }
       >
         <div className={styles.nav_links}>
-          <p>ГЛАВНАЯ</p>
-          <p>О СЕБЕ</p>
-          <p>ГАЛЕРЕЯ</p>
-          <p>КОНТАКТЫ</p>
+          <p onClick={() => handle_scroll_to_section("hero")}>ГЛАВНАЯ</p>
+          <p onClick={() => handle_scroll_to_section("about")}>О СЕБЕ</p>
+          <p onClick={() => handle_scroll_to_section("gallery")}>ГАЛЕРЕЯ</p>
+          <p onClick={() => handle_scroll_to_section("contacts")}>КОНТАКТЫ</p>
         </div>
         <div className={styles.social_media_container}>
           <a

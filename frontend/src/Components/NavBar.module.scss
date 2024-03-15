@@ -44,7 +44,25 @@
   letter-spacing: 0.1rem;
 
   p {
+    position: relative;
     cursor: pointer;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.25rem;
+      width: 0;
+      height: 1px;
+      background-color: $main_bright;
+      opacity: 0;
+      transition: 0.15s ease-out;
+    }
+
+    &:hover::after {
+      opacity: 1;
+      width: 100%;
+    }
   }
 
   & p:not(:last-child) {
