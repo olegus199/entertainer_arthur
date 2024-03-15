@@ -76,7 +76,12 @@
   background-color: $main_bright;
 }
 
+.nav_button_opacity {
+  opacity: 1;
+}
+
 .image_wrapper {
+  position: relative;
   display: flex;
   justify-content: center;
 
@@ -118,15 +123,30 @@
 @media (max-width: 550px) {
   .nav_area {
     position: absolute;
+
+    justify-content: initial;
+
     width: 20%;
+
+    opacity: 1;
+    z-index: 3;
   }
 
   .area_right {
     right: 0;
   }
 
-  .nav_button {
-    display: none;
+  .nav_button_opacity {
+    opacity: 0.5;
+  }
+
+  .button_left {
+    margin-left: 0.5rem;
+  }
+
+  .button_right {
+    margin-right: 0.5rem;
+    margin-left: auto;
   }
 
   .image_wrapper {

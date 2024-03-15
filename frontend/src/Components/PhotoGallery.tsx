@@ -14,6 +14,11 @@ const PhotoGallery: FC<PhotoGalleryProps> = ({
   handle_photo_click,
 }) => {
   const [active_photo_idx, set_active_photo_idx] = useState<number>(init_idx);
+  const [button_class_opacity, set_button_class_opacity] = useState({
+    left: `${styles.nav_button_opacity}`,
+    right: `${styles.nav_button_opacity}`,
+  });
+
   const handle_nav_area_click = (direction: "prev" | "next") => {
     switch (direction) {
       case "prev":
@@ -72,8 +77,19 @@ const PhotoGallery: FC<PhotoGalleryProps> = ({
       <div
         className={`${styles.nav_area} ${styles.area_left}`}
         onClick={() => handle_nav_area_click("prev")}
+        onTouchStart={() =>
+          set_button_class_opacity((prev) => ({ ...prev, left: "" }))
+        }
+        onTouchEnd={() =>
+          set_button_class_opacity((prev) => ({
+            ...prev,
+            left: `${styles.nav_button_opacity}`,
+          }))
+        }
       >
-        <div className={styles.nav_button}>
+        <div
+          className={`${styles.nav_button} ${styles.button_left} ${button_class_opacity.left}`}
+        >
           <FaChevronLeft className={styles.chevron} />
         </div>
       </div>
@@ -87,8 +103,19 @@ const PhotoGallery: FC<PhotoGalleryProps> = ({
       <div
         className={`${styles.nav_area} ${styles.area_right}`}
         onClick={() => handle_nav_area_click("next")}
+        onTouchStart={() =>
+          set_button_class_opacity((prev) => ({ ...prev, right: "" }))
+        }
+        onTouchEnd={() =>
+          set_button_class_opacity((prev) => ({
+            ...prev,
+            right: `${styles.nav_button_opacity}`,
+          }))
+        }
       >
-        <div className={styles.nav_button}>
+        <div
+          className={`${styles.nav_button} ${styles.button_right} ${button_class_opacity.right}`}
+        >
           <FaChevronRight className={styles.chevron} />
         </div>
       </div>
