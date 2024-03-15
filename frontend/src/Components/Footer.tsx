@@ -10,8 +10,13 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 import ContactMeWindow from "./ContactMeWindow";
+import { SectionNames } from "../types";
 
-const Footer: FC = () => {
+interface FooterProps {
+  handle_scroll_to_section: (section_name: SectionNames) => void;
+}
+
+const Footer: FC<FooterProps> = ({ handle_scroll_to_section }) => {
   const [contact_me_visible, set_contact_me_visible] = useState(false);
 
   const hide_window = (value: boolean) => {
@@ -26,10 +31,12 @@ const Footer: FC = () => {
         <div className={styles.left_part}>
           <div className={styles.nav_and_logo}>
             <div className={styles.nav_links}>
-              <p>ГЛАВНАЯ</p>
-              <p>О СЕБЕ</p>
-              <p>ГАЛЕРЕЯ</p>
-              <p>КОНТАКТЫ</p>
+              <p onClick={() => handle_scroll_to_section("hero")}>ГЛАВНАЯ</p>
+              <p onClick={() => handle_scroll_to_section("about")}>О СЕБЕ</p>
+              <p onClick={() => handle_scroll_to_section("gallery")}>ГАЛЕРЕЯ</p>
+              <p onClick={() => handle_scroll_to_section("contacts")}>
+                КОНТАКТЫ
+              </p>
             </div>
             <img
               src={logo}
