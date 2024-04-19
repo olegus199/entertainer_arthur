@@ -1,7 +1,44 @@
 import styles from "./Meeting.module.scss";
-import { FC } from "react";
+import { FC, useEffect, useRef } from "react";
 
 const Meeting: FC = () => {
+  const rows_refs = {
+    row_1: useRef<HTMLDivElement>(null),
+    row_2: useRef<HTMLDivElement>(null),
+    row_3: useRef<HTMLDivElement>(null),
+    row_4: useRef<HTMLDivElement>(null),
+    row_5: useRef<HTMLDivElement>(null),
+    row_6: useRef<HTMLDivElement>(null),
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`${styles.row_anima}`);
+          } else {
+            entry.target.classList.remove(`${styles.row_anima}`);
+          }
+        });
+      },
+      {
+        threshold: 1,
+      }
+    );
+
+    const refs_arr = Object.values(rows_refs);
+
+    refs_arr.forEach((ref) => {
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   return (
     <section className={styles.meeting}>
       <div className={styles.content}>
@@ -12,7 +49,10 @@ const Meeting: FC = () => {
           <h2 className={styles.h2}>На встрече:</h2>
         </div>
         <div className={styles.meeting_progress}>
-          <div className={styles.row}>
+          <div
+            ref={rows_refs.row_1}
+            className={styles.row}
+          >
             <div className={styles.column_circle}>
               <div className={styles.meeting_circle}></div>
             </div>
@@ -22,7 +62,10 @@ const Meeting: FC = () => {
               </p>
             </div>
           </div>
-          <div className={styles.row}>
+          <div
+            ref={rows_refs.row_2}
+            className={styles.row}
+          >
             <div className={styles.column_circle}>
               <div className={styles.meeting_circle}></div>
             </div>
@@ -33,7 +76,10 @@ const Meeting: FC = () => {
               </p>
             </div>
           </div>
-          <div className={styles.row}>
+          <div
+            ref={rows_refs.row_3}
+            className={styles.row}
+          >
             <div className={styles.column_circle}>
               <div className={styles.meeting_circle}></div>
             </div>
@@ -43,7 +89,10 @@ const Meeting: FC = () => {
               </p>
             </div>
           </div>
-          <div className={styles.row}>
+          <div
+            ref={rows_refs.row_4}
+            className={styles.row}
+          >
             <div className={styles.column_circle}>
               <div className={styles.meeting_circle}></div>
             </div>
@@ -54,7 +103,10 @@ const Meeting: FC = () => {
               </p>
             </div>
           </div>
-          <div className={styles.row}>
+          <div
+            ref={rows_refs.row_5}
+            className={styles.row}
+          >
             <div className={styles.column_circle}>
               <div className={styles.meeting_circle}></div>
             </div>
@@ -64,7 +116,10 @@ const Meeting: FC = () => {
               </p>
             </div>
           </div>
-          <div className={styles.row}>
+          <div
+            ref={rows_refs.row_6}
+            className={styles.row}
+          >
             <div className={styles.column_circle}>
               <div className={styles.meeting_circle}></div>
             </div>

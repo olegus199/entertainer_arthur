@@ -1,6 +1,46 @@
 @import "../colors.scss";
 @import "../GeneralStyles.scss";
 
+@keyframes anima_2 {
+  from {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes anima_3 {
+  from {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes anima_4 {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ellipse_anima {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.15;
+  }
+}
+
 .about_section {
   overflow: hidden;
 }
@@ -31,6 +71,31 @@
   & .about_fact:not(:last-child) {
     margin-bottom: 2rem;
   }
+}
+
+.about_facts_animation {
+  .fact_2 {
+    animation: anima_2 0.2s ease-out forwards;
+  }
+  .fact_3 {
+    animation: anima_3 0.3s ease-out 0.1s forwards;
+  }
+  .fact_4 {
+    animation: anima_4 0.4s ease-out 0.3s forwards;
+  }
+}
+
+.fact_2 {
+  opacity: 0;
+  transform: translateY(-1rem);
+}
+.fact_3 {
+  opacity: 0;
+  transform: translateY(-2rem);
+}
+.fact_4 {
+  opacity: 0;
+  transform: translateY(-3rem);
 }
 
 .about_fact {
@@ -73,9 +138,15 @@
   position: absolute;
   top: 20%;
   right: -35%;
-  opacity: 0.15;
+
   transform: rotate(-10deg);
+  opacity: 0;
+
   z-index: -1;
+}
+
+.ellipse_anima {
+  animation: ellipse_anima 0.2s ease-out 0.8s forwards;
 }
 
 .bottom_decor,

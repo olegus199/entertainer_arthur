@@ -1,5 +1,5 @@
 import styles from "./Advantages.module.scss";
-import React, { FC } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import star from "../assets/icons/star.svg";
 import vocalist from "../assets/icons/vocalist.svg";
 import quality from "../assets/icons/quality.svg";
@@ -36,6 +36,35 @@ const advantages_widgets: AdvantageWidget[] = [
 ];
 
 const Advantages: FC = () => {
+  const advantages_refs = Array.from({ length: 4 }, () =>
+    useRef<HTMLDivElement>(null)
+  );
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`${styles.widget_anima}`);
+          }
+        });
+      },
+      {
+        threshold: 0.7,
+      }
+    );
+
+    advantages_refs.forEach((ref) => {
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <section className={styles.advantages_section}>
       <div className={styles.content}>
@@ -53,6 +82,7 @@ const Advantages: FC = () => {
             return (
               <div
                 key={idx}
+                ref={advantages_refs[idx]}
                 className={styles.advantages_widget}
               >
                 <div className={styles.widget_header}>

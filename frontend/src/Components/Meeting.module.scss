@@ -18,8 +18,33 @@
   display: grid;
   grid-template-rows: 9.375rem;
   grid-template-columns: 1fr 6.125rem 1fr;
+
+  .column_step {
+    transition: 0.2s ease-out;
+    transform: translateX(-1rem);
+  }
+
+  .column_step_1,
+  .column_step_3,
+  .column_step_5 {
+    transform: translateX(1rem);
+  }
+
+  .meeting_step {
+    transition: 0.2s ease-out;
+    opacity: 0;
+  }
 }
 
+.row_anima {
+  .column_step {
+    transform: translateX(0);
+  }
+
+  .meeting_step {
+    opacity: 1;
+  }
+}
 .column_circle {
   grid-area: 1 / 2 / 1 / 2;
   display: flex;
