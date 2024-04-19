@@ -14,3 +14,16 @@ export const handle_enter_key_down = (
     }
   }
 };
+
+const phone_number = "+79219929153";
+export function handle_phone_click() {
+  if (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobile/i.test(
+      navigator.userAgent
+    )
+  ) {
+    window.location.href = `tel:${phone_number}`;
+  } else {
+    window.location.href = `sms:${phone_number}`;
+  }
+}
