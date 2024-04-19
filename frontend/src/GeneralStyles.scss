@@ -1,5 +1,14 @@
 @import "./colors.scss";
 
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @mixin content {
   position: relative;
   margin: 0 clamp(0px, (100vw - 80rem) / 2, 9999px);
