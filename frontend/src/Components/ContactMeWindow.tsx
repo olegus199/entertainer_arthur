@@ -6,6 +6,7 @@ import logo_bright from "../assets/logo_filled.svg";
 import logo_dark from "../assets/logo_dark.svg";
 import bg_photo from "../assets/contact_me_photo.jpg";
 import EmailForm from "./EmailForm";
+import { handle_phone_click } from "../helpres";
 
 interface ContactMeWindowProps {
   set_window_visible: (value: boolean) => void;
@@ -109,7 +110,10 @@ const ContactMeWindow: FC<ContactMeWindowProps> = ({ set_window_visible }) => {
             >
               <FaTelegram className={`${styles.icon} ${styles.telegram}`} />
             </a>
-            <FaPhone className={`${styles.icon} ${styles.number}`} />
+            <FaPhone
+              className={`${styles.icon} ${styles.number}`}
+              onClick={handle_phone_click}
+            />
           </div>
           <div className={styles.image_wrapper}>
             <img
