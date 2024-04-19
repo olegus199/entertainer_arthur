@@ -1,6 +1,7 @@
 import styles from "./Contacts.module.scss";
 import { FC } from "react";
 import EmailForm from "./EmailForm";
+import { handle_phone_click } from "../helpres";
 
 const Contacts: FC = () => {
   return (
@@ -24,7 +25,12 @@ const Contacts: FC = () => {
         <div className={styles.call_options}>
           <div className={styles.option}>
             <p className={styles.option_name}>телефон</p>
-            <p className={styles.option_phone}>+7 (921) 992 - 91 - 53</p>
+            <p
+              className={styles.option_phone}
+              onClick={handle_phone_click}
+            >
+              +7 (921) 992 - 91 - 53
+            </p>
           </div>
           <div className={styles.option}>
             <p className={styles.option_name}>whatsapp</p>
