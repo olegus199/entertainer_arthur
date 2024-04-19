@@ -26,7 +26,7 @@ const advantages_widgets: AdvantageWidget[] = [
   {
     title: "Качество",
     icon: quality,
-    description: `Провожу праздники весело, ярко, зажигательно и динамично! Современный подход, веселые конкурсы, никакой пошлости, виртуозная импровизация, только добрые шутки, море музыки и позитива!`,
+    description: `Провожу праздники весело, ярко, зажигательно и динамично! Современный подход, веселые конкурсы, никакой пошлости, виртуозная импровизация, только добрые шутки, море музыки и позитива! А вот моё промо видео`,
   },
   {
     title: "Стабильность",
@@ -47,7 +47,8 @@ const Advantages: FC = () => {
         </div>
         <div className={styles.advantages_container}>
           {advantages_widgets.map((widget, idx) => {
-            const descriptionParts = widget.description.split("здесь");
+            const split_malahov = widget.description.split("здесь");
+            const split_promo = widget.description.split("промо видео");
 
             return (
               <div
@@ -58,26 +59,44 @@ const Advantages: FC = () => {
                   <p className={styles.widget_title}>{widget.title}</p>
                   <img
                     src={widget.icon}
-                    alt="widget icon"
+                    alt="icon"
                     draggable={false}
                     className={styles.widget_icon}
                   />
                 </div>
-                <p className={styles.widget_description}>
-                  {descriptionParts.map((part, partIdx) => (
-                    <React.Fragment key={partIdx}>
-                      {part}
-                      {partIdx < descriptionParts.length - 1 && (
-                        <a
-                          href="https://www.youtube.com/watch?v=e1hc3O213zg"
-                          target="_blank"
-                        >
-                          здесь
-                        </a>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </p>
+                {widget.title === "Качество" ? (
+                  <p className={styles.widget_description}>
+                    {split_promo.map((part, partIdx) => (
+                      <React.Fragment key={partIdx}>
+                        {part}
+                        {partIdx < split_promo.length - 1 && (
+                          <a
+                            href="https://www.youtube.com/watch?v=oNCP9ep7_O0&list=PLGAC0A0yGLqtG5oGeCk1e3vRXNalbqJnd&index=26"
+                            target="_blank"
+                          >
+                            промо видео
+                          </a>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </p>
+                ) : (
+                  <p className={styles.widget_description}>
+                    {split_malahov.map((part, partIdx) => (
+                      <React.Fragment key={partIdx}>
+                        {part}
+                        {partIdx < split_malahov.length - 1 && (
+                          <a
+                            href="https://www.youtube.com/watch?v=e1hc3O213zg"
+                            target="_blank"
+                          >
+                            здесь
+                          </a>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </p>
+                )}
               </div>
             );
           })}
