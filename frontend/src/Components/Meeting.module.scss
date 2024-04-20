@@ -45,6 +45,7 @@
     opacity: 1;
   }
 }
+
 .column_circle {
   grid-area: 1 / 2 / 1 / 2;
   display: flex;
@@ -112,6 +113,16 @@
 @media (max-width: 690px) {
   .row {
     grid-template-columns: 2.125rem 1fr;
+
+    .column_step {
+      transform: translateX(1rem);
+    }
+  }
+
+  .row_anima {
+    .column_step {
+      transform: translateX(0);
+    }
   }
 
   .column_circle {

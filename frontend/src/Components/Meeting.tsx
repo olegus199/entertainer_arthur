@@ -17,13 +17,11 @@ const Meeting: FC = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add(`${styles.row_anima}`);
-          } else {
-            entry.target.classList.remove(`${styles.row_anima}`);
           }
         });
       },
       {
-        threshold: 1,
+        threshold: 0.5,
       }
     );
 
