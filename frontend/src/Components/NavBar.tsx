@@ -28,6 +28,10 @@ const NavBar: FC<NavBarProps> = ({ handle_scroll_to_section }) => {
   const [is_mobile, set_is_mobile] = useState(window.innerWidth <= 1010);
   const mobile_menu_ref = useRef<HTMLDivElement>(null);
 
+  function handle_logo_click() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   useEffect(() => {
     const handle_resize = () => {
       set_is_mobile(window.innerWidth <= 1010);
@@ -77,6 +81,7 @@ const NavBar: FC<NavBarProps> = ({ handle_scroll_to_section }) => {
         alt="logo"
         className={styles.logo}
         draggable={false}
+        onClick={handle_logo_click}
       />
       <div
         className={styles.mobile_menu_icons_container}
