@@ -27,6 +27,9 @@ function App() {
     gallery_ref: useRef(null),
     contacts_ref: useRef(null),
   };
+  const [y_offset, set_y_offset] = useState(
+    window.innerWidth <= 1010 ? 50 : 80
+  );
 
   const handle_loading = () => {
     setTimeout(() => {
@@ -34,28 +37,58 @@ function App() {
     }, 1300);
   };
 
-  useEffect(() => {
-    if (!loading) {
-      set_loader_visible(false);
-    }
-  }, [loading]);
-
   const handle_scroll_to_section = (section_name: SectionNames) => {
     switch (section_name) {
       case "hero":
         refs.hero_ref.current?.scrollIntoView({ behavior: "smooth" });
         break;
       case "about":
-        refs.about_ref.current?.scrollIntoView({ behavior: "smooth" });
+        const about = refs.about_ref.current;
+        if (about) {
+          const y =
+            about.getBoundingClientRect().top + window.scrollY - y_offset;
+
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
         break;
       case "gallery":
-        refs.gallery_ref.current?.scrollIntoView({ behavior: "smooth" });
+        const gallery = refs.gallery_ref.current;
+        if (gallery) {
+          const y =
+            gallery.getBoundingClientRect().top + window.scrollY - y_offset;
+
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
         break;
       case "contacts":
-        refs.contacts_ref.current?.scrollIntoView({ behavior: "smooth" });
+        const contacts = refs.contacts_ref.current;
+        if (contacts) {
+          const y =
+            contacts.getBoundingClientRect().top + window.scrollY - y_offset;
+
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
         break;
     }
   };
+
+  useEffect(() => {
+    const handle_resize = () => {
+      set_y_offset(window.innerWidth <= 1010 ? 50 : 80);
+    };
+
+    window.addEventListener("resize", handle_resize);
+
+    return () => {
+      window.removeEventListener("resize", handle_resize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      set_loader_visible(false);
+    }
+  }, [loading]);
 
   return (
     <>
