@@ -1,7 +1,8 @@
 import ReactPlayer from "react-player";
 import styles from "./Video.module.scss";
 import { FC } from "react";
-import video_url from "../assets/promo.mp4";
+
+const video_url = "https://www.youtube.com/watch?v=CzGNnOHFgZg";
 
 const Video: FC = () => {
   return (
@@ -10,11 +11,9 @@ const Video: FC = () => {
         <ReactPlayer
           className={styles.react_player}
           url={video_url}
-          width="100%"
-          height="100%"
           controls
           config={{
-            file: {},
+            youtube: {},
           }}
         />
       </div>

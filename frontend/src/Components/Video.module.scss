@@ -1,17 +1,14 @@
 @import "../colors.scss";
 
 .video_wrapper {
-  width: auto;
-  height: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 7.5rem;
+  margin-bottom: 3.75rem;
 }
 
-.react_player {
-  position: relative;
-  // padding-top: 56.25%;
-
-  & > div {
-    position: absolute;
-    top: 0;
-    left: 0;
+@media (max-width: 440px) {
+  .video_wrapper {
+    animation-duration: 3.75rem;
   }
 }
