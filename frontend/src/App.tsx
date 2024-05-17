@@ -10,6 +10,7 @@ import Contacts from "./Components/Contacts";
 import Meeting from "./Components/Meeting";
 import Footer from "./Components/Footer";
 import { SectionNames } from "./types";
+import SpecialOffer from "./Components/SpecialOffer";
 
 interface SectionRefs {
   hero_ref: React.RefObject<HTMLDivElement>;
@@ -109,7 +110,7 @@ function App() {
         <div ref={refs.gallery_ref}>
           <PhotoSection />
         </div>
-        {/* <Video /> */}
+        <SpecialOffer handle_scroll_to_section={handle_scroll_to_section} />
         <div ref={refs.contacts_ref}>
           <Contacts />
         </div>
