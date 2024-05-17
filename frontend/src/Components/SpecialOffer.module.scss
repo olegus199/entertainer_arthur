@@ -1,0 +1,221 @@
+@import "../colors.scss";
+@import "../GeneralStyles.scss";
+
+.special_offer_section {
+  position: relative;
+  overflow: hidden;
+}
+
+.content {
+  @include content;
+}
+
+.header {
+  @include custom_header;
+}
+
+.description {
+  font-size: 1.25rem;
+}
+
+.general_description {
+  margin-top: 4.5rem;
+}
+
+.offer_body {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-top: 5.125rem;
+}
+
+.text_content {
+  position: relative;
+  margin-right: 1.5rem;
+  z-index: 2;
+}
+
+.photo_content {
+  position: relative;
+  z-index: 2;
+}
+
+.offer_header {
+  width: fit-content;
+
+  font-size: 5rem;
+  font-weight: 500;
+  line-height: 151%;
+
+  span {
+    color: $accent_red;
+  }
+
+  ::selection {
+    color: $accent_red;
+  }
+  ::-moz-selection {
+    color: $accent_red;
+  }
+}
+
+.offer_description {
+  margin-top: 15.625rem;
+}
+
+.duration {
+  margin-top: 11.875rem;
+}
+
+.price {
+  margin-top: 11.875rem;
+}
+
+.price,
+.price_mobile {
+  span {
+    color: $accent_red;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  ::selection {
+    color: $accent_red;
+  }
+  ::-moz-selection {
+    color: $accent_red;
+  }
+}
+
+.photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-bottom: 5.125rem;
+  }
+}
+
+.image_wrapper {
+  width: 26rem;
+  height: 38.25rem;
+
+  border-radius: 1.5rem;
+  box-shadow: 0 0.25rem 0.25rem rgba($color: #000000, $alpha: 0.25);
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.artist_name {
+  margin-top: 2rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.duration_price_mobile {
+  display: none;
+}
+
+.rose_bg {
+  position: absolute;
+  top: 25rem;
+  left: 0;
+
+  width: 52.625rem;
+  height: 52.625rem;
+
+  opacity: 0.1;
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .offer_body {
+    flex-direction: column;
+    justify-content: initial;
+    align-items: center;
+  }
+
+  .offer_header {
+    font-size: 4rem;
+    line-height: initial;
+  }
+
+  .br {
+    display: none;
+  }
+
+  .offer_description {
+    margin-top: 5rem;
+  }
+
+  .photo_content {
+    margin-top: 5rem;
+  }
+
+  .photo:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+
+  .duration_price_desktop {
+    display: none;
+  }
+
+  .duration_price_mobile {
+    display: block;
+    margin-top: 5rem;
+  }
+
+  .price_mobile {
+    margin-top: 5rem;
+  }
+
+  .rose_bg {
+    width: 40rem;
+    height: 40rem;
+  }
+}
+@media (max-width: 584px) {
+  .description,
+  .artist_name {
+    font-size: 1rem;
+  }
+
+  .general_description,
+  .offer_body,
+  .offer_description,
+  .photo_content,
+  .duration_price_mobile,
+  .price_mobile {
+    margin-top: 2.625rem;
+  }
+
+  .offer_header {
+    font-size: 3.125rem;
+  }
+
+  .image_wrapper {
+    width: 17rem;
+    height: 22.625rem;
+    border-radius: 0.75rem;
+  }
+
+  .rose_bg {
+    top: 8rem;
+    left: -4rem;
+  }
+}
+
+@media (max-width: 440px) {
+  .offer_header {
+    font-size: 2.125rem;
+  }
+}
