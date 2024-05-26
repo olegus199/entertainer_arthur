@@ -2,7 +2,7 @@ import ReactPlayer from "react-player";
 import styles from "./Video.module.scss";
 import { FC } from "react";
 
-const video_url = "https://www.youtube.com/watch?v=CzGNnOHFgZg";
+const video_url = "https://www.youtube.com/watch?v=xXrfFT7PPKc";
 
 const Video: FC = () => {
   return (
