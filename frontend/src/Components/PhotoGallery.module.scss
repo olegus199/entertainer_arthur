@@ -49,7 +49,7 @@
   width: 10%;
   height: 100vh;
 
-  opacity: 0;
+  opacity: 1;
   user-select: none;
   cursor: pointer;
 
@@ -58,9 +58,9 @@
 
   transition: opacity 0.15s ease-out;
 
-  &:hover {
-    opacity: 1;
-  }
+  // &:hover {
+  //   opacity: 1;
+  // }
 }
 
 .nav_button {
