@@ -47,8 +47,10 @@
   font-size: 0.875rem;
   letter-spacing: 0.1rem;
 
-  p {
+  a {
     position: relative;
+    color: $main_bright;
+    text-decoration: none;
     cursor: pointer;
 
     &::after {
@@ -69,7 +71,7 @@
     }
   }
 
-  & p:not(:last-child) {
+  & a:not(:last-child) {
     margin-right: 2em;
   }
 }
@@ -144,7 +146,7 @@
     flex-direction: column;
     align-items: start;
 
-    & p:not(:last-child) {
+    & a:not(:last-child) {
       margin-right: 0;
       margin-bottom: 1.75rem;
     }

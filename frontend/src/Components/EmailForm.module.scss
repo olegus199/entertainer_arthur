@@ -68,7 +68,48 @@
   left: 0;
 }
 
-button {
+.personal_data_accept {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.875rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+
+  input[type="checkbox"]:checked + .custom_checkbox {
+    background-color: $accent_red;
+    border: 1px solid $accent_red;
+    .checkmark {
+      display: block;
+    }
+  }
+
+  a {
+    color: $main_dark;
+  }
+}
+
+.custom_checkbox {
+  flex-shrink: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 1rem;
+  height: 1rem;
+
+  margin-right: 0.5rem;
+
+  border: 1px solid gray;
+  border-radius: 0.25rem;
+}
+
+.checkmark {
+  color: $main_bright;
+  display: none;
+}
+
+.button {
   width: fit-content;
 
   margin-top: 0.625rem;
@@ -116,7 +157,7 @@ button {
     font-size: 0.75rem;
   }
 
-  button {
+  .button {
     font-size: 0.875rem;
   }
 }
@@ -128,13 +169,13 @@ button {
 }
 
 @media (max-width: 720px) {
-  button {
+  .button {
     margin: 0.625rem auto 0;
   }
 }
 
 @media (max-width: 435px) {
-  button {
+  .button {
     margin: 0 auto;
     padding: 0.75em 2em;
   }
@@ -145,7 +186,7 @@ button {
     font-size: 0.875rem;
   }
 
-  button {
+  .button {
     font-size: 0.875rem;
   }
 }
@@ -172,7 +213,7 @@ button {
     font-size: 0.675rem;
   }
 
-  button {
+  .button {
     margin: 0;
   }
 }
@@ -215,7 +256,7 @@ button {
     font-size: 0.5rem;
   }
 
-  button {
+  .button {
     padding: 0.5em 2em;
     margin-top: 1em;
     font-size: 0.75rem;
@@ -223,7 +264,7 @@ button {
 }
 
 @media (max-width: 375px) and (max-height: 530px) {
-  button {
+  .button {
     margin: 0 auto;
   }
 }

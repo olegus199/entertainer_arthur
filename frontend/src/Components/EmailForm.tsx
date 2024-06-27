@@ -1,8 +1,10 @@
-import axios from "axios";
 import styles from "./EmailForm.module.scss";
+import axios from "axios";
 import { ChangeEvent, FC, FormEvent, useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { handle_enter_key_down } from "../helpres";
+import { FaCheck } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 interface FormData {
   name: string;
@@ -26,6 +28,7 @@ const EmailForm: FC = () => {
   });
   const email_schema = z.string().email();
   const [email_valid, set_email_valid] = useState<boolean | null>(null);
+  const [checked, setChecked] = useState(false);
   const [button_disabled, set_button_disabled] = useState(true);
   const input_refs = [
     useRef<HTMLInputElement>(null),
@@ -172,14 +175,14 @@ const EmailForm: FC = () => {
   // Handling button enabling/disabling
   useEffect(() => {
     const form_values = Object.values(form_data);
-    const not_empty = form_values.every((field) => field !== "");
+    const not_empty = form_values.every((field) => field !== "") && checked;
 
     if (not_empty && email_valid) {
       set_button_disabled(false);
     } else {
       set_button_disabled(true);
     }
-  }, [form_data, email_valid]);
+  }, [form_data, email_valid, checked]);
 
   // Handling counter update
   useEffect(() => {
@@ -259,9 +262,31 @@ const EmailForm: FC = () => {
           {letter_counter.message}/500
         </div>
       </div>
+      <label
+        htmlFor="checkbox"
+        className={styles.personal_data_accept}
+      >
+        <input
+          type="checkbox"
+          id="checkbox"
+          style={{ display: "none" }}
+          onChange={() => setChecked(!checked)}
+        />
+        <label
+          htmlFor="checkbox"
+          className={styles.custom_checkbox}
+        >
+          <FaCheck className={styles.checkmark} />
+        </label>
+        <span>
+          Нажимая на кнопку "Отправить" вы даете согласие на обработку
+          персональных данных <Link to="agreement">(ознакомиться)</Link>
+        </span>
+      </label>
       <button
         type="submit"
         disabled={button_disabled}
+        className={styles.button}
       >
         Отправить
       </button>

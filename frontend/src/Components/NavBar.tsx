@@ -10,15 +10,15 @@ import {
   FaTelegram,
   FaInstagram,
 } from "react-icons/fa6";
-import { SectionNames } from "../types";
+import { SectionHeights } from "../types";
+import { useSelector } from "react-redux";
+import { RootState } from "../state/store";
+import { handle_scroll_to_section } from "../helpres";
+import { Link } from "react-router-dom";
 
 type Visibility = "hidden" | "visible";
 
-interface NavBarProps {
-  handle_scroll_to_section: (section_name: SectionNames) => void;
-}
-
-const NavBar: FC<NavBarProps> = ({ handle_scroll_to_section }) => {
+const NavBar: FC = () => {
   const [mobile_menu_open, set_mobile_menu_open] = useState(false);
   const [links_and_media_classes, set_links_and_media_classes] = useState(
     `${styles.links_and_media}`
@@ -27,6 +27,12 @@ const NavBar: FC<NavBarProps> = ({ handle_scroll_to_section }) => {
     useState<Visibility>("visible");
   const [is_mobile, set_is_mobile] = useState(window.innerWidth <= 1010);
   const mobile_menu_ref = useRef<HTMLDivElement>(null);
+  const sectionHeights = useSelector<RootState, SectionHeights>(
+    (state) => state.sectionHeights.heights
+  );
+  const sectionYOffset = useSelector<RootState, number>(
+    (state) => state.sectionYOffset.y_offset
+  );
 
   function handle_logo_click() {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -104,10 +110,46 @@ const NavBar: FC<NavBarProps> = ({ handle_scroll_to_section }) => {
         }
       >
         <div className={styles.nav_links}>
-          <p onClick={() => handle_scroll_to_section("hero")}>ГЛАВНАЯ</p>
-          <p onClick={() => handle_scroll_to_section("about")}>О СЕБЕ</p>
-          <p onClick={() => handle_scroll_to_section("gallery")}>ГАЛЕРЕЯ</p>
-          <p onClick={() => handle_scroll_to_section("contacts")}>КОНТАКТЫ</p>
+          <Link
+            to="/"
+            onClick={() =>
+              handle_scroll_to_section("hero", sectionHeights, sectionYOffset)
+            }
+          >
+            ГЛАВНАЯ
+          </Link>
+          <Link
+            to="/"
+            onClick={() =>
+              handle_scroll_to_section("about", sectionHeights, sectionYOffset)
+            }
+          >
+            О СЕБЕ
+          </Link>
+          <Link
+            to="/"
+            onClick={() =>
+              handle_scroll_to_section(
+                "gallery",
+                sectionHeights,
+                sectionYOffset
+              )
+            }
+          >
+            ГАЛЕРЕЯ
+          </Link>
+          <Link
+            to="/"
+            onClick={() =>
+              handle_scroll_to_section(
+                "contacts",
+                sectionHeights,
+                sectionYOffset
+              )
+            }
+          >
+            КОНТАКТЫ
+          </Link>
         </div>
         <div className={styles.social_media_container}>
           <a

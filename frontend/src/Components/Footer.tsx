@@ -10,14 +10,20 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 import ContactMeWindow from "./ContactMeWindow";
-import { SectionNames } from "../types";
+import { SectionHeights, SectionNames } from "../types";
+import { handle_scroll_to_section } from "../helpres";
+import { useSelector } from "react-redux";
+import { RootState } from "../state/store";
 
-interface FooterProps {
-  handle_scroll_to_section: (section_name: SectionNames) => void;
-}
-
-const Footer: FC<FooterProps> = ({ handle_scroll_to_section }) => {
+const Footer: FC = () => {
   const [contact_me_visible, set_contact_me_visible] = useState(false);
+
+  const sectionHeights = useSelector<RootState, SectionHeights>(
+    (state) => state.sectionHeights.heights
+  );
+  const sectionYOffset = useSelector<RootState, number>(
+    (state) => state.sectionYOffset.y_offset
+  );
 
   const hide_window = (value: boolean) => {
     set_contact_me_visible(value);
@@ -31,10 +37,48 @@ const Footer: FC<FooterProps> = ({ handle_scroll_to_section }) => {
         <div className={styles.left_part}>
           <div className={styles.nav_and_logo}>
             <div className={styles.nav_links}>
-              <p onClick={() => handle_scroll_to_section("hero")}>ГЛАВНАЯ</p>
-              <p onClick={() => handle_scroll_to_section("about")}>О СЕБЕ</p>
-              <p onClick={() => handle_scroll_to_section("gallery")}>ГАЛЕРЕЯ</p>
-              <p onClick={() => handle_scroll_to_section("contacts")}>
+              <p
+                onClick={() =>
+                  handle_scroll_to_section(
+                    "hero",
+                    sectionHeights,
+                    sectionYOffset
+                  )
+                }
+              >
+                ГЛАВНАЯ
+              </p>
+              <p
+                onClick={() =>
+                  handle_scroll_to_section(
+                    "about",
+                    sectionHeights,
+                    sectionYOffset
+                  )
+                }
+              >
+                О СЕБЕ
+              </p>
+              <p
+                onClick={() =>
+                  handle_scroll_to_section(
+                    "gallery",
+                    sectionHeights,
+                    sectionYOffset
+                  )
+                }
+              >
+                ГАЛЕРЕЯ
+              </p>
+              <p
+                onClick={() =>
+                  handle_scroll_to_section(
+                    "contacts",
+                    sectionHeights,
+                    sectionYOffset
+                  )
+                }
+              >
                 КОНТАКТЫ
               </p>
             </div>

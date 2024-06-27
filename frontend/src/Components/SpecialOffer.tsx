@@ -4,14 +4,20 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import photo_arthur from "../assets/arthur_roses.jpg";
 import photo_nikolai from "../assets/guitarist.jpg";
 import rose_bg from "../assets/rose_bg.png";
-import { SectionNames } from "../types";
+import { SectionHeights, SectionNames } from "../types";
 import Video from "./Video";
+import { handle_scroll_to_section } from "../helpres";
+import { useSelector } from "react-redux";
+import { RootState } from "../state/store";
 
-interface SpecialOfferProps {
-  handle_scroll_to_section: (section_name: SectionNames) => void;
-}
+const SpecialOffer: FC = () => {
+  const sectionHeights = useSelector<RootState, SectionHeights>(
+    (state) => state.sectionHeights.heights
+  );
+  const sectionYOffset = useSelector<RootState, number>(
+    (state) => state.sectionYOffset.y_offset
+  );
 
-const SpecialOffer: FC<SpecialOfferProps> = ({ handle_scroll_to_section }) => {
   return (
     <section className={styles.special_offer_section}>
       <div className={styles.content}>
@@ -43,11 +49,27 @@ const SpecialOffer: FC<SpecialOfferProps> = ({ handle_scroll_to_section }) => {
               </p>
               <p className={`${styles.description} ${styles.price}`}>
                 По вопросам цены{" "}
-                <span onClick={() => handle_scroll_to_section("contacts")}>
+                <span
+                  onClick={() =>
+                    handle_scroll_to_section(
+                      "contacts",
+                      sectionHeights,
+                      sectionYOffset
+                    )
+                  }
+                >
                   пишите
                 </span>{" "}
                 или{" "}
-                <span onClick={() => handle_scroll_to_section("contacts")}>
+                <span
+                  onClick={() =>
+                    handle_scroll_to_section(
+                      "contacts",
+                      sectionHeights,
+                      sectionYOffset
+                    )
+                  }
+                >
                   звоните
                 </span>
                 , сориентирую лично!
@@ -90,11 +112,27 @@ const SpecialOffer: FC<SpecialOfferProps> = ({ handle_scroll_to_section }) => {
             </p>
             <p className={`${styles.description} ${styles.price_mobile}`}>
               По вопросам цены{" "}
-              <span onClick={() => handle_scroll_to_section("contacts")}>
+              <span
+                onClick={() =>
+                  handle_scroll_to_section(
+                    "contacts",
+                    sectionHeights,
+                    sectionYOffset
+                  )
+                }
+              >
                 пишите
               </span>{" "}
               или{" "}
-              <span onClick={() => handle_scroll_to_section("contacts")}>
+              <span
+                onClick={() =>
+                  handle_scroll_to_section(
+                    "contacts",
+                    sectionHeights,
+                    sectionYOffset
+                  )
+                }
+              >
                 звоните
               </span>
               , сориентирую лично!
