@@ -1,0 +1,48 @@
+@import "../GeneralStyles.scss";
+@import "../colors.scss";
+
+.content {
+  @include content();
+  padding-bottom: 4rem;
+}
+
+.h2 {
+  width: fit-content;
+  margin: 1.5em auto 0;
+  font-family: "Wix Madefor Display", sans-serif;
+  font-size: 3.125rem;
+}
+
+.agreement_text {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4rem;
+
+  p {
+    a {
+      color: $accent_red;
+
+      @include red_selection();
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 584px) {
+  .h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 440px) {
+  .h2 {
+    font-size: 1.625rem;
+  }
+
+  .agreement_text {
+    margin-top: 2rem;
+  }
+}
