@@ -94,7 +94,7 @@
 }
 
 .h2 {
-  margin-top: 3.75em;
+  margin-top: 2.25em;
   margin-bottom: 1em;
   font-size: 2rem;
 }
@@ -293,7 +293,7 @@
   }
 }
 
-@media (max-height: 700px) {
+@media (max-height: 780px) {
   .content_container {
     font-size: 0.875rem;
     padding: 2em 2.5em;
@@ -318,7 +318,7 @@
   }
 }
 
-@media (max-height: 530px) {
+@media (max-height: 590px) {
   .close_icon {
     color: $main_dark;
   }
@@ -395,7 +395,7 @@
   }
 }
 
-@media (max-height: 420px) {
+@media (max-height: 470px) {
   .contact_me_window {
     font-size: 0.75rem;
   }
