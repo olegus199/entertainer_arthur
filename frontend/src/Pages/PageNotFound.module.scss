@@ -1,0 +1,89 @@
+@import "../GeneralStyles.scss";
+@import "../colors.scss";
+
+.content {
+  @include content();
+  padding-bottom: 4rem;
+  min-height: 100vh;
+  z-index: 20;
+}
+.h3 {
+  width: fit-content;
+  margin: 0 auto;
+
+  span {
+    color: $accent_red;
+    @include red_selection();
+  }
+}
+
+.header {
+  width: fit-content;
+  margin: 15vh auto 0;
+  text-align: center;
+}
+
+.h2 {
+  font-family: "Wix Madefor Display", sans-serif;
+  font-size: 3.125rem;
+}
+
+.p {
+  margin-top: 1rem;
+}
+
+.return_section {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin-top: 20%;
+  margin-left: 10%;
+}
+
+.return_link {
+  width: fit-content;
+
+  margin-top: 1rem;
+  padding: 0.75rem 2.875rem;
+
+  font-family: "Onest", sans-serif;
+  font-size: 1rem;
+  text-decoration: none;
+
+  border: none;
+  border-radius: 0.125rem;
+  color: $main_bright;
+  background-color: $accent_red;
+
+  cursor: pointer;
+  transition: filter 0.2s ease-out;
+
+  &:hover {
+    filter: brightness(110%);
+  }
+}
+
+.image_wrapper {
+  position: absolute;
+  bottom: -1rem;
+  right: 0rem;
+  width: 100%;
+  max-width: 50rem;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 584px) {
+  .h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 440px) {
+  .h2 {
+    font-size: 1.625rem;
+  }
+}
