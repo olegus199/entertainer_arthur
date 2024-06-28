@@ -10,11 +10,12 @@ import {
   FaTelegram,
   FaInstagram,
 } from "react-icons/fa6";
-import { SectionHeights } from "../types";
-import { useSelector } from "react-redux";
+import { SectionHeights, SectionNames } from "../types";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
 import { handle_scroll_to_section } from "../helpres";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { setShouldScrollTo } from "../state/shouldScrollToSlice";
 
 type Visibility = "hidden" | "visible";
 
@@ -33,15 +34,28 @@ const NavBar: FC = () => {
   const sectionYOffset = useSelector<RootState, number>(
     (state) => state.sectionYOffset.y_offset
   );
+  const location = useLocation();
+  const dispatch = useDispatch();
 
   function handle_logo_click() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (location.pathname !== "/") {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+
+  function handleLinkClick(sectionName: SectionNames) {
+    if (location.pathname !== "/") {
+      dispatch(setShouldScrollTo(sectionName));
+    } else {
+      handle_scroll_to_section(sectionName, sectionHeights, sectionYOffset);
+    }
   }
 
   useEffect(() => {
-    const handle_resize = () => {
-      set_is_mobile(window.innerWidth <= 1010);
-    };
+    set_is_mobile(window.innerWidth <= 1010);
+    const handle_resize = () => {};
 
     window.addEventListener("resize", handle_resize);
 
@@ -82,13 +96,15 @@ const NavBar: FC = () => {
 
   return (
     <nav className={styles.nav_bar}>
-      <img
-        src={logo}
-        alt="logo"
-        className={styles.logo}
-        draggable={false}
-        onClick={handle_logo_click}
-      />
+      <Link to="/">
+        <img
+          src={logo}
+          alt="logo"
+          className={styles.logo}
+          draggable={false}
+          onClick={handle_logo_click}
+        />
+      </Link>
       <div
         className={styles.mobile_menu_icons_container}
         onClick={() => set_mobile_menu_open(!mobile_menu_open)}
@@ -112,41 +128,25 @@ const NavBar: FC = () => {
         <div className={styles.nav_links}>
           <Link
             to="/"
-            onClick={() =>
-              handle_scroll_to_section("hero", sectionHeights, sectionYOffset)
-            }
+            onClick={() => handleLinkClick("hero")}
           >
             ГЛАВНАЯ
           </Link>
           <Link
             to="/"
-            onClick={() =>
-              handle_scroll_to_section("about", sectionHeights, sectionYOffset)
-            }
+            onClick={() => handleLinkClick("about")}
           >
             О СЕБЕ
           </Link>
           <Link
             to="/"
-            onClick={() =>
-              handle_scroll_to_section(
-                "gallery",
-                sectionHeights,
-                sectionYOffset
-              )
-            }
+            onClick={() => handleLinkClick("gallery")}
           >
             ГАЛЕРЕЯ
           </Link>
           <Link
             to="/"
-            onClick={() =>
-              handle_scroll_to_section(
-                "contacts",
-                sectionHeights,
-                sectionYOffset
-              )
-            }
+            onClick={() => handleLinkClick("contacts")}
           >
             КОНТАКТЫ
           </Link>
