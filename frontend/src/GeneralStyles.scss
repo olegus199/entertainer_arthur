@@ -75,3 +75,12 @@
   -ms-user-select: none;
   user-select: none;
 }
+
+@mixin red_selection {
+  &::selection {
+    color: $accent_red;
+  }
+  &::-moz-selection {
+    color: $accent_red;
+  }
+}
