@@ -280,7 +280,13 @@ const EmailForm: FC = () => {
         </label>
         <span>
           Нажимая на кнопку "Отправить" вы даете согласие на обработку
-          персональных данных <Link to="agreement">(ознакомиться)</Link>
+          персональных данных{" "}
+          <Link
+            to="agreement"
+            onClick={() => window.scrollTo(0, 0)}
+          >
+            (ознакомиться)
+          </Link>
         </span>
       </label>
       <button
