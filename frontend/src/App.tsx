@@ -4,6 +4,8 @@ import MainLayout from "./MainLayout";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setIsInitial } from "./state/isInitialLoadSlice";
+import AgreementPage from "./Pages/AgreementPage";
+import PageNotFound from "./Pages/PageNotFound";
 
 function App() {
   const [loading, set_loading] = useState(true);
@@ -12,7 +14,6 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("here");
     dispatch(setIsInitial(false));
   }, []);
 
@@ -44,9 +45,13 @@ function App() {
           />
           <Route
             path="agreement"
-            element={<div style={{ marginTop: 200 }}>user agreement</div>}
+            element={<AgreementPage />}
           />
         </Route>
+        <Route
+          path="*"
+          element={<PageNotFound />}
+        />
       </Routes>
     </BrowserRouter>
   );
