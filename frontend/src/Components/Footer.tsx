@@ -10,7 +10,7 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 import ContactMeWindow from "./ContactMeWindow";
-import { SectionHeights, SectionNames } from "../types";
+import { SectionHeights } from "../types";
 import { handle_scroll_to_section } from "../helpres";
 import { useSelector } from "react-redux";
 import { RootState } from "../state/store";

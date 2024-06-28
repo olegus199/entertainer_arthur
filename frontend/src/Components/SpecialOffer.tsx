@@ -4,7 +4,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import photo_arthur from "../assets/arthur_roses.jpg";
 import photo_nikolai from "../assets/guitarist.jpg";
 import rose_bg from "../assets/rose_bg.png";
-import { SectionHeights, SectionNames } from "../types";
+import { SectionHeights } from "../types";
 import Video from "./Video";
 import { handle_scroll_to_section } from "../helpres";
 import { useSelector } from "react-redux";
