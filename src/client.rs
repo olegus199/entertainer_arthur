@@ -23,12 +23,8 @@ impl Client {
             .requests
             .iter()
             .filter(|r| {
-                if let Some(datetime) = r.datetime {
-                    (now - datetime)
-                        < Duration::minutes(REQUEST_TIME_INTERVAL_MINUTES_LIMIT)
-                } else {
-                    false
-                }
+                (now - datetime)
+                    < Duration::minutes(REQUEST_TIME_INTERVAL_MINUTES_LIMIT)
             })
             .count();
 
