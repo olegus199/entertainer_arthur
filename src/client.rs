@@ -23,7 +23,7 @@ impl Client {
             .requests
             .iter()
             .filter(|r| {
-                (now - datetime)
+                (now - r.datetime.unwrap()) // datetime here is always `Some`
                     < Duration::minutes(REQUEST_TIME_INTERVAL_MINUTES_LIMIT)
             })
             .count();
