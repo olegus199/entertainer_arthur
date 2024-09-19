@@ -15,9 +15,6 @@ lazy_static::lazy_static! {
         r"([A-Za-z]+), (\d+) ([A-Za-z]+) (\d{4}) (\d{2}:\d{2}:\d{2} [-+]\d{4})"
     )
     .unwrap();
-}
-
-lazy_static::lazy_static! {
     pub static ref WEEKDAYS: HashMap<&'static str, &'static str> = vec![
         ("Sun", "Воскресенье"),
         ("Mon", "Понедельник"),
@@ -66,16 +63,11 @@ pub struct Request {
 }
 
 #[allow(dead_code)]
-fn serialize_phone<S>(
-    number: &PhoneNumber,
-    serializer: S,
-) -> Result<S::Ok, S::Error>
+fn serialize_phone<S>(number: &PhoneNumber, serializer: S) -> Result<S::Ok, S::Error>
 where
     S: Serializer,
 {
-    serializer.serialize_str(
-        &number.format().mode(phonenumber::Mode::E164).to_string(),
-    )
+    serializer.serialize_str(&number.format().mode(phonenumber::Mode::E164).to_string())
 }
 
 struct PhoneNumberVisitor;
@@ -90,10 +82,7 @@ impl<'de> Visitor<'de> for PhoneNumberVisitor {
             .map_err(|e| serde::de::Error::custom(e))
     }
 
-    fn expecting(
-        &self,
-        formatter: &mut std::fmt::Formatter,
-    ) -> std::fmt::Result {
+    fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
         write!(formatter, "a valid phon number")
     }
 }
@@ -106,8 +95,7 @@ where
 }
 
 pub fn format_phone_number(phone_number: &str) -> String {
-    let digits: String =
-        phone_number.chars().filter(|c| c.is_digit(10)).collect();
+    let digits: String = phone_number.chars().filter(|c| c.is_digit(10)).collect();
 
     let formatted_number = format!(
         "+{} ({}) {} {} {}",
