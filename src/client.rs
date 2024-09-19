@@ -33,6 +33,7 @@ impl Client {
             fresh_requests_count,
         )
     }
+
     pub fn allowed_to_handle_sorted(&self) -> bool {
         let now = OffsetDateTime::now_utc();
         let fresh_requests_count = self
@@ -41,12 +42,8 @@ impl Client {
             .rev()
             .take(ALLOWED_REQUESTS_IN_TIME_INTERVAL + 1)
             .filter(|r| {
-                if let Some(datetime) = r.datetime {
-                    (now - datetime)
-                        < Duration::minutes(REQUEST_TIME_INTERVAL_MINUTES_LIMIT)
-                } else {
-                    false
-                }
+                (now - r.datetime.unwrap())
+                    < Duration::minutes(REQUEST_TIME_INTERVAL_MINUTES_LIMIT)
             })
             .count();
 
