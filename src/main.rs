@@ -39,12 +39,17 @@ struct AppState {
 }
 
 impl AppState {
-    fn try_create_request(&self, addr: &SocketAddr, req: Request) -> Result<(), String> {
+    fn try_create_request(
+        &self,
+        addr: &SocketAddr,
+        req: Request,
+    ) -> Result<(), String> {
         let Ok(mut lock_clients) = self.clients.lock() else {
             return Err("Can't acquire mutex lock".to_owned());
         };
         if let Some(client) = lock_clients.iter_mut().find(|c| c.ip.eq(addr)) {
-            let (allowed_to_handle_unsorted, count) = client.allowed_to_handle_unsorted();
+            let (allowed_to_handle_unsorted, count) =
+                client.allowed_to_handle_unsorted();
             if allowed_to_handle_unsorted {
                 client.add_request(req);
                 tracing::info!(
@@ -82,7 +87,8 @@ async fn main() {
         .with_level(true)
         .finish();
 
-    tracing::subscriber::set_global_default(subscriber).expect("Failed to set up tracing");
+    tracing::subscriber::set_global_default(subscriber)
+        .expect("Failed to set up tracing");
 
     tracing::info!("Starting entertainer_arthur on 15100 port..");
     let listener = TcpListener::bind("0.0.0.0:15100").await.unwrap();
@@ -131,16 +137,17 @@ async fn post_message(
             );
             let subject = format!("Обращение от {}", request.name);
 
-            if let Some(datetime) = request.datetime {
-                let date = datetime.to_offset(MOSKOW_TIME_OFFSET.clone());
-                match translate_rfc2822_timestamp(date) {
-                    Ok(s) => {
-                        body.push_str("\n\n");
-                        body.push_str(&s);
-                    }
-                    Err(e) => {
-                        tracing::error!("Failed to format date: {e}")
-                    }
+            let date = request
+                .datetime
+                .unwrap()
+                .to_offset(MOSKOW_TIME_OFFSET.clone());
+            match translate_rfc2822_timestamp(date) {
+                Ok(s) => {
+                    body.push_str("\n\n");
+                    body.push_str(&s);
+                }
+                Err(e) => {
+                    tracing::error!("Failed to format date: {e}")
                 }
             }
 
@@ -186,10 +193,12 @@ async fn shutdown_signal() {
     };
     #[cfg(unix)]
     let terminate = async {
-        tokio::signal::unix::signal(tokio::signal::unix::SignalKind::terminate())
-            .expect("failed to install signal handler")
-            .recv()
-            .await;
+        tokio::signal::unix::signal(
+            tokio::signal::unix::SignalKind::terminate(),
+        )
+        .expect("failed to install signal handler")
+        .recv()
+        .await;
     };
     tokio::select! {
         () = ctrl_c => {},
@@ -198,12 +207,16 @@ async fn shutdown_signal() {
     tracing::info!("Terminate signal received");
 }
 
-fn get_date_string(date: OffsetDateTime) -> Result<String, time::error::Format> {
+fn get_date_string(
+    date: OffsetDateTime,
+) -> Result<String, time::error::Format> {
     let format = time::format_description::well_known::Rfc2822;
     date.format(&format)
 }
 
-fn translate_rfc2822_timestamp(timestamp: OffsetDateTime) -> Result<String, time::error::Format> {
+fn translate_rfc2822_timestamp(
+    timestamp: OffsetDateTime,
+) -> Result<String, time::error::Format> {
     let formatted = get_date_string(timestamp)?;
     if let Some(captures) = RE.captures(&formatted) {
         let weekday = captures.get(1).unwrap().as_str();
@@ -315,9 +328,11 @@ mod tests {
         ];
 
         for (input, expected_output) in test_cases {
-            let input_date =
-                OffsetDateTime::parse(input, &time::format_description::well_known::Rfc2822)
-                    .unwrap();
+            let input_date = OffsetDateTime::parse(
+                input,
+                &time::format_description::well_known::Rfc2822,
+            )
+            .unwrap();
             let translated = translate_rfc2822_timestamp(input_date).unwrap();
             assert_eq!(translated, expected_output);
         }
@@ -337,7 +352,10 @@ mod tests {
     fn can_handle_allows_requests() {
         let request = make_request();
         let client = Client {
-            ip: std::net::SocketAddr::V4(SocketAddrV4::new(Ipv4Addr::new(1, 1, 1, 1), 1)),
+            ip: std::net::SocketAddr::V4(SocketAddrV4::new(
+                Ipv4Addr::new(1, 1, 1, 1),
+                1,
+            )),
             requests: repeat(request).take(5).collect(),
         };
         assert!(client.allowed_to_handle_sorted())
@@ -347,7 +365,10 @@ mod tests {
     fn can_handle_rejects_if_limit_exceeded() {
         let request = make_request();
         let client = Client {
-            ip: std::net::SocketAddr::V4(SocketAddrV4::new(Ipv4Addr::new(1, 1, 1, 1), 1)),
+            ip: std::net::SocketAddr::V4(SocketAddrV4::new(
+                Ipv4Addr::new(1, 1, 1, 1),
+                1,
+            )),
             requests: repeat(request).take(6).collect(),
         };
         assert!(!client.allowed_to_handle_sorted())

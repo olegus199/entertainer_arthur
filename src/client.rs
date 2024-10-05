@@ -7,6 +7,9 @@ use crate::{
     REQUEST_TIME_INTERVAL_MINUTES_LIMIT,
 };
 
+// Entity, which represents user with unique ip addres.
+// Used for storing requests with timestamps, for limiting
+// requests for given ip.
 pub struct Client {
     pub ip: SocketAddr,
     pub requests: Vec<Request>,
@@ -34,6 +37,7 @@ impl Client {
         )
     }
 
+    // Unused code
     pub fn allowed_to_handle_sorted(&self) -> bool {
         let now = OffsetDateTime::now_utc();
         let fresh_requests_count = self
