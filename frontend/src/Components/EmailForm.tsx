@@ -72,13 +72,13 @@ const EmailForm: FC = () => {
     const send_form = async () => {
       try {
         const response = await axios.post(
-          "https://artkremnev.ru/api/message",
+          "https://www.artkremnev.ru/api/message",
           form_urlencoded,
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
             },
-          }
+          },
         );
         if (response.status === 200) {
           alert("Письмо успешно отправлено!");
@@ -151,21 +151,21 @@ const EmailForm: FC = () => {
     if (formatted_value.length > 4) {
       formatted_value = `${formatted_value.slice(
         0,
-        4
+        4,
       )}) ${formatted_value.slice(4)}`;
     }
 
     if (formatted_value.length > 9) {
       formatted_value = `${formatted_value.slice(
         0,
-        9
+        9,
       )} - ${formatted_value.slice(9)}`;
     }
 
     if (formatted_value.length > 14) {
       formatted_value = `${formatted_value.slice(
         0,
-        14
+        14,
       )} - ${formatted_value.slice(14)}`;
     }
 
@@ -197,10 +197,7 @@ const EmailForm: FC = () => {
   }, [form_data.name, form_data.message]);
 
   return (
-    <form
-      className={styles.input_form}
-      onSubmit={handle_submit}
-    >
+    <form className={styles.input_form} onSubmit={handle_submit}>
       <div className={styles.input_container}>
         <input
           ref={input_refs[0]}
@@ -262,29 +259,20 @@ const EmailForm: FC = () => {
           {letter_counter.message}/500
         </div>
       </div>
-      <label
-        htmlFor="checkbox"
-        className={styles.personal_data_accept}
-      >
+      <label htmlFor="checkbox" className={styles.personal_data_accept}>
         <input
           type="checkbox"
           id="checkbox"
           style={{ display: "none" }}
           onChange={() => setChecked(!checked)}
         />
-        <label
-          htmlFor="checkbox"
-          className={styles.custom_checkbox}
-        >
+        <label htmlFor="checkbox" className={styles.custom_checkbox}>
           <FaCheck className={styles.checkmark} />
         </label>
         <span>
           Нажимая на кнопку "Отправить" вы даете согласие на обработку
           персональных данных{" "}
-          <Link
-            to="agreement"
-            onClick={() => window.scrollTo(0, 0)}
-          >
+          <Link to="agreement" onClick={() => window.scrollTo(0, 0)}>
             (ознакомиться)
           </Link>
         </span>
